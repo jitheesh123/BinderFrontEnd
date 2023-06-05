@@ -198,7 +198,6 @@ class CommonTable extends Component {
                                     if (tableData.config && tableData.config[keyItem] && tableData.config[keyItem].isVisible) {
                                         columnCount += 1;
                                     }
-                                   
                                 })}
                                 <td colSpan={columnCount} className="text-center">
                                     No records found!

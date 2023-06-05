@@ -42,7 +42,7 @@ class GlobalSearch extends Component {
                     }}
                     value={this.state.inputValue}
                 />
-                {this.state.inputValue.trim().length ? (
+                {this.state.inputValue?.trim().length ? (
                     <button
                         type="button"
                         className="btn btn-search"

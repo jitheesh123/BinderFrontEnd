@@ -11,10 +11,10 @@ class Pagination extends Component {
                 {isRecordPerPage ? (
                     <div className="count d-flex col-md-6">
                         <div className="count-dtl">
-                            Total Count: <span>{paginationParams.totalCount}</span>
+                            Total Count: <span>{paginationParams?.totalCount}</span>
                         </div>
                         <div className="col-md-2 pr-2 selbx">
-                            <select className="form-control" value={paginationParams.perPage} onChange={e => handlePerPageChange(e)}>
+                            <select className="form-control" value={paginationParams?.perPage} onChange={e => handlePerPageChange(e)}>
                                 <option value="10">10</option>
                                 <option value="20">20</option>
                                 <option value="30">30</option>
@@ -31,7 +31,7 @@ class Pagination extends Component {
                     nextLabel={"Next"}
                     breakLabel={"..."}
                     breakClassName={"cursor-pointer"}
-                    pageCount={paginationParams.totalPages}
+                    pageCount={paginationParams?.totalPages}
                     marginPagesDisplayed={2}
                     pageRangeDisplayed={5}
                     onPageChange={handlePageClick}
@@ -39,7 +39,7 @@ class Pagination extends Component {
                     subContainerClassName={"cursor-pointer"}
                     activeClassName={"active"}
                     activeLinkClassName={"active"}
-                    forcePage={paginationParams.currentPage}
+                    forcePage={paginationParams?.currentPage}
                     pageClassName={"cursor-pointer"}
                     previousLinkClassName={"prv"}
                     nextClassName={"nxt"}

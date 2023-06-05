@@ -28,7 +28,6 @@ import UploadDocumentModal from "../common/components/UploadDocumentModal";
 import { checkPermission } from "../../config/utils";
 import CreateActivityEventScheduleModal from "../common/components/CreateActivityEventScheduleModal";
 
-
 class index extends Component {
     constructor(props) {
         super(props);
@@ -81,9 +80,7 @@ class index extends Component {
             tableData: {
                 ...this.state.tableData,
                 keys: reportTableData.keys,
-                config: 
-                this.props.reportReducer.entityParams.tableConfig ||
-                 reportTableData.config
+                config: this.props.reportReducer.entityParams.tableConfig || reportTableData.config
             }
         });
         await this.getReportsData();
@@ -102,15 +99,20 @@ class index extends Component {
                 params: { section }
             }
         } = this.props;
-        const { params, paginationParams, } = this.state;
+        const { params, paginationParams } = this.state;
         let master_filters = JSON.parse(localStorage.getItem("master_filters"));
         let responseData = [];
         let tempTitle = "";
         // console.log("check",master_filters)
-        if(this.props.logbook_document_id && this.props.reportType){
-            await this.props.getReports({ ...params,report_type:this.props.reportType,logbook_document_id:this.props.logbook_document_id, ...master_filters});
-        }else{
-            await this.props.getReports({ ...params, ...master_filters});
+        if (this.props.logbook_document_id && this.props.reportType) {
+            await this.props.getReports({
+                ...params,
+                report_type: this.props.reportType,
+                logbook_document_id: this.props.logbook_document_id,
+                ...master_filters
+            });
+        } else {
+            await this.props.getReports({ ...params, ...master_filters });
         }
         responseData = this.props.reportReducer.reportData.schedules || [];
         const { tableData } = this.state;
@@ -129,7 +131,7 @@ class index extends Component {
                 reportsTitle: tempTitle
             });
         }
-        // this.props.setIsLoading(false);
+        this.props.setIsLoading(false);
     };
 
     updateWildCardFilter = async newFilter => {
@@ -344,12 +346,16 @@ class index extends Component {
         params.search = search;
         params.filters = filters;
         params.list = list;
-        if(this.props.logbook_document_id && this.props.reportType){
-            await this.props.getListForCommonFilterForLogbook({ ...params,report_type:this.props.reportType,logbook_document_id:this.props.logbook_document_id});
-        }else{
+        if (this.props.logbook_document_id && this.props.reportType) {
+            await this.props.getListForCommonFilterForLogbook({
+                ...params,
+                report_type: this.props.reportType,
+                logbook_document_id: this.props.logbook_document_id
+            });
+        } else {
             await this.props.getListForCommonFilterForLogbook(params);
         }
-        
+
         return (this.props.reportReducer.getListForCommonFilterResponse && this.props.reportReducer.getListForCommonFilterResponse.list) || [];
     };
 
@@ -391,12 +397,17 @@ class index extends Component {
 
     exportTable = async () => {
         const { params } = this.state;
-    //     let reportParams = this.setReportParams();
-    if(this.props.logbook_document_id && this.props.reportType){
-        await await this.props.exportReports({ ...params,report_type:this.props.reportType,logbook_document_id:this.props.logbook_document_id,name:"Assigned Report"});
-    }else{
-        await await this.props.exportReports(params);
-    }
+        //     let reportParams = this.setReportParams();
+        if (this.props.logbook_document_id && this.props.reportType) {
+            await await this.props.exportReports({
+                ...params,
+                report_type: this.props.reportType,
+                logbook_document_id: this.props.logbook_document_id,
+                name: "Assigned Report"
+            });
+        } else {
+            await await this.props.exportReports(params);
+        }
     };
 
     // setReportParams = () => {
@@ -1157,7 +1168,7 @@ class index extends Component {
                 <section className="cont-ara">
                     <LoadingOverlay fadeSpeed={0} active={isPopUpLoading || isLoading} spinner={<Loader />}>
                         <div className="list-area">
-                            <TopSlider />    
+                            <TopSlider />
                             <div className="lst-bt-nav">
                                 <div className="table table-ara">
                                     <TableTopHeader
@@ -1179,7 +1190,6 @@ class index extends Component {
                                     />
                                     <div className="list-sec">
                                         <div className="table-section">
-                                           
                                             <CommonTable
                                                 viewItem={this.viewItem}
                                                 deleteItem={this.deleteItemConfirm}
@@ -1230,4 +1240,4 @@ const mapStateToProps = state => {
     return { reportReducer, commonReducer };
 };
 
-export default withRouter(connect(mapStateToProps, { ...actions, ...commonActions  })(index));
+export default withRouter(connect(mapStateToProps, { ...actions, ...commonActions })(index));

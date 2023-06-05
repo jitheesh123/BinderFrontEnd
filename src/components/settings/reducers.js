@@ -1,7 +1,7 @@
 import * as actionTypes from "./constants";
 
 const initialState = {
-    consultancyDropdownData: {},
+    consultancyDropdownData: [],
     clientDropdownData: {},
     sectorDropdownData: {},
     campusDropdownData: {},

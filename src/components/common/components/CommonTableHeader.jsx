@@ -315,18 +315,19 @@ class CommonTableHeader extends Component {
     };
 
     checkHasCommonFilters = searchKey => {
-        const { tableParams = null } = this.props
+        const { tableParams = null } = this.props;
         if (tableParams) {
             if (tableParams.list && tableParams.list[searchKey] && tableParams.list[searchKey].length) {
                 return true;
-            }
-            else if ((tableParams.filters && tableParams.filters[searchKey] && tableParams.filters[searchKey]?.key?.length)) {
+            } else if (tableParams.filters && tableParams.filters[searchKey] && tableParams.filters[searchKey]?.key?.length) {
                 return true;
-            }else if(tableParams.filters && tableParams.filters[searchKey]?.filters[0] !== "contains" && tableParams.filters[searchKey]?.filters.length )
-            {
-                return true
+            } else if (
+                tableParams.filters &&
+                tableParams.filters[searchKey]?.filters[0] !== "contains" &&
+                tableParams.filters[searchKey]?.filters.length
+            ) {
+                return true;
             }
-            
         }
         return false;
     };

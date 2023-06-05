@@ -14,7 +14,7 @@ class CommonView extends Component {
         super(props);
         this.state = {
             showFrequencyModal: false,
-            showImageModal: false,
+            showImageModal: false
         };
     }
 
@@ -118,10 +118,10 @@ class CommonView extends Component {
                 //     );
                 // } else {
                 //     // returnData = data || "-";
-                //     let dataToArray = 
+                //     let dataToArray =
                 //         <li>
                 //             <h3>{data.trim()}</h3>
-                //         </li>  
+                //         </li>
                 //     returnData = (
                 //         <ul type="i" className="listForWindow">
                 //             {dataToArray}
@@ -130,8 +130,10 @@ class CommonView extends Component {
                 // }
                 if (data?.includes("~")) {
                     // returnData = data.replace(/~/g, "\n");
-                    let dataToArray = data?.split("~").map(item => `${item.trim()}`).join("\n")
-                        ;
+                    let dataToArray = data
+                        ?.split("~")
+                        .map(item => `${item.trim()}`)
+                        .join("\n");
                     // returnData = dataToArray || "-";
                     returnData = (
                         <ul type="i" className="customCommonStandard">
@@ -139,9 +141,12 @@ class CommonView extends Component {
                         </ul>
                     );
                 } else {
-                    returnData = <ul type="i" className="customCommonStandard">
-                        {data}
-                    </ul> || "-";
+                    returnData =
+                        (
+                            <ul type="i" className="customCommonStandard">
+                                {data}
+                            </ul>
+                        ) || "-";
                 }
                 break;
             default:
@@ -203,7 +208,7 @@ class CommonView extends Component {
             hasDeemingAgencyAssign = true,
             hasProcedureAssign = false,
             updateProcedureAssignment,
-            updateFormAssignment,
+            updateFormAssignment
         } = this.props;
         const {
             match: {
@@ -350,7 +355,13 @@ class CommonView extends Component {
                                 </button>
                             ) : null}
                             {hasDelete ? (
-                                <button className="btn" onClick={() => deleteItem(this.props.match.params.id)}>
+                                <button
+                                    className="btn"
+                                    onClick={() => {
+                                        history.push("/demo");
+                                        alert(`Item with this ID "${this.props.match.params.id}" has been deleted`);
+                                    }}
+                                >
                                     <img src="/images/delete-gry.svg" alt="" />
                                     Delete
                                 </button>
@@ -389,7 +400,6 @@ class CommonView extends Component {
                                                 </label>
                                                 {this.renderData(config[keyItem].type, item[keyItem], keyItem) &&
                                                     this.renderData(config[keyItem].type, item[keyItem], keyItem)}
-
                                             </div>
                                         </div>
                                     </div>

@@ -147,7 +147,64 @@ export const campusTableData = {
     },
     data: []
 };
-
+export const demoTableData = {
+    keys: ["id", "name", "email", "phone"],
+    config: {
+        id: {
+            isVisible: true,
+            label: "demoId",
+            class: "",
+            searchKey: "demo.id",
+            type: "string",
+            hasWildCardSearch: true,
+            hasSort: true,
+            hasCommonSearch: false,
+            getListTable: "demo",
+            commonSearchKey: "demo",
+            commonSearchObjectKey: "id"
+        },
+        name: {
+            isVisible: true,
+            label: "name",
+            class: "",
+            searchKey: "demo.name",
+            type: "string",
+            hasWildCardSearch: true,
+            hasSort: true,
+            hasCommonSearch: false,
+            getListTable: "demo",
+            commonSearchKey: "demo",
+            commonSearchObjectKey: "name"
+        },
+        email: {
+            isVisible: true,
+            label: "Email",
+            class: "",
+            searchKey: "demo.email",
+            type: "string",
+            hasWildCardSearch: true,
+            hasSort: true,
+            hasCommonSearch: false,
+            getListTable: "demo",
+            commonSearchKey: "demo",
+            commonSearchObjectKey: "email"
+        },
+        phone: {
+            isVisible: true,
+            label: "phone",
+            class: "",
+            searchKey: "demo.phone",
+            type: "string",
+            hasWildCardSearch: true,
+            hasSort: true,
+            hasCommonSearch: false,
+            getListTable: "demo",
+            commonSearchKey: "demo",
+            commonSearchObjectKey: "phone"
+        }
+    },
+    data: []
+};
 export const logbookTableData = {
     keys: ["code", "name", "display_name", "color", "text_color", "line", "order", "is_active", "created_at", "updated_at"],
     config: {
@@ -1054,6 +1111,228 @@ export const buildingTableData = {
             getListTable: "buildings",
             commonSearchKey: "buildings",
             commonSearchObjectKey: "updated_at"
+        }
+    },
+    data: []
+};
+export const BuildingTableConfig = {
+    keys: [
+        "code",
+        "name",
+        "consultancy",
+        "client",
+        "sector",
+        "campus",
+        "deeming_agency",
+        "building_type",
+        "display_name",
+        "description",
+        "number",
+        "area",
+        "cost",
+        "enterprise_index",
+        "ownership",
+        "ownership_type",
+        "use",
+        "manager",
+        "year",
+        "ministry",
+        "street",
+        "city",
+        "state",
+        "zip_code",
+        "country",
+        "comments",
+        "created_at",
+        "updated_at"
+    ],
+    config: {
+        code: {
+            isVisible: true,
+            label: "Building Code",
+            class: "",
+            type: "string"
+        },
+        name: {
+            isVisible: true,
+            label: "Building Name",
+            class: "",
+            type: "string"
+        },
+        display_name: {
+            isVisible: true,
+            label: "Display Name",
+            class: "",
+            type: "string",
+            hasWildCardSearch: true
+        },
+        building_type: {
+            isVisible: true,
+            label: "Building Type",
+            class: "",
+            type: "object"
+        },
+        consultancy: {
+            isVisible: true,
+            label: "Consultancy",
+            class: "",
+            type: "object"
+        },
+        client: {
+            isVisible: true,
+            label: "Client",
+            class: "client-wid",
+            type: "object"
+        },
+        sector: {
+            isVisible: true,
+            label: "Sector",
+            class: "",
+            type: "object"
+        },
+        campus: {
+            isVisible: true,
+            label: "Campus",
+            class: "",
+            type: "object"
+        },
+        deeming_agency: {
+            isVisible: true,
+            label: "Deeming Agency",
+            class: "",
+            type: "object"
+        },
+        description: {
+            isVisible: true,
+            label: "Description",
+            class: "",
+            type: "string"
+        },
+        number: {
+            isVisible: true,
+            label: "Building Number",
+            class: "",
+            type: "string"
+        },
+        projects: {
+            isVisible: true,
+            label: "Associated Projects",
+            class: "",
+            type: "string"
+        },
+        users: {
+            isVisible: true,
+            label: "Consultancy Users",
+            class: "cons-user",
+            type: "array"
+        },
+        client_users: {
+            isVisible: true,
+            label: "Client Users",
+            class: "",
+            type: "array"
+        },
+        area: {
+            isVisible: true,
+            label: "Area (Sq Ft)",
+            class: "",
+            type: "number"
+        },
+        cost: {
+            isVisible: true,
+            label: "Cost",
+            class: "",
+            type: "money"
+        },
+        enterprise_index: {
+            isVisible: true,
+            label: "Enterprise Index",
+            class: "",
+            type: "string"
+        },
+        ownership: {
+            isVisible: true,
+            label: "Ownership",
+            class: "clent",
+            type: "string"
+        },
+        ownership_type: {
+            isVisible: true,
+            label: "Ownership Type",
+            class: "",
+            type: "string"
+        },
+        use: {
+            isVisible: true,
+            label: "Use",
+            class: "",
+            type: "string"
+        },
+        manager: {
+            isVisible: true,
+            label: "Manager",
+            class: "",
+            type: "string"
+        },
+        year: {
+            isVisible: true,
+            label: "Year Built",
+            class: "",
+            type: "string"
+        },
+        ministry: {
+            isVisible: true,
+            label: "Ministry",
+            class: "",
+            type: "string"
+        },
+        street: {
+            isVisible: true,
+            label: "Street",
+            class: "",
+            type: "string"
+        },
+        city: {
+            isVisible: true,
+            label: "City",
+            class: "",
+            type: "string"
+        },
+        state: {
+            isVisible: true,
+            label: "State",
+            class: "",
+            type: "string"
+        },
+        zip_code: {
+            isVisible: true,
+            label: "ZipCode",
+            class: "",
+            type: "string"
+        },
+        country: {
+            isVisible: true,
+            label: "Country",
+            class: "",
+            type: "string"
+        },
+        comments: {
+            isVisible: true,
+            label: "Comments",
+            class: "",
+            type: "string"
+        },
+        created_at: {
+            isVisible: true,
+            label: "Created At",
+            class: "",
+            type: "date"
+        },
+        updated_at: {
+            isVisible: true,
+            label: "Updated At",
+            class: "",
+            type: "date"
         }
     },
     data: []

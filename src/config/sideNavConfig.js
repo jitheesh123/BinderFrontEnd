@@ -196,6 +196,14 @@ export const sideNavConfig = () => {
             hasSubMenu: true,
             subMenus: [
                 {
+                    key: "demo",
+                    label: "Demo",
+                    url: "demo",
+                    permission: checkPermission("menu", "settings"),
+                    image: null,
+                    hasSubMenu: false
+                },
+                {
                     key: "consultancies",
                     label: "Consultancies",
                     url: "consultancies",
@@ -231,6 +239,14 @@ export const sideNavConfig = () => {
                     key: "buildings",
                     label: "Buildings",
                     url: "buildings",
+                    permission: checkPermission("menu", "settings", "buildings"),
+                    image: null,
+                    hasSubMenu: false
+                },
+                {
+                    key: "buildingDemo",
+                    label: "BuildingDemo",
+                    url: "buildingDemo",
                     permission: checkPermission("menu", "settings", "buildings"),
                     image: null,
                     hasSubMenu: false

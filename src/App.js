@@ -110,10 +110,14 @@ import AssetForm from "./components/settings/asset/components/assetForm";
 import FormType from "./components/settings/formType/index";
 import buildingEditShift from "./components/settings/buildingActivity/buildingEditShift";
 import clientEditShift from "./components/settings/clientActivity/components/clientEditShift";
-import Documents from "./components/settings/Documents"
+import Documents from "./components/settings/Documents";
 import documentForm from "./components/settings/Documents/userForm";
 import globalReport from "./components/globalReport";
-
+import demo from "./components/settings/Demo/index";
+import demoView from "./components/settings/Demo/demoView";
+import DemoForm from "./components/settings/Demo/demoForm";
+import BuildingDemo from "./components/settings/BuildingDemo/index";
+import AddBuildingForm from "./components/settings/BuildingDemo/AddBuildingDemo";
 function App() {
     return (
         <Router history={history}>
@@ -121,6 +125,12 @@ function App() {
                 <PublicRoute exact path="/" component={LoginForm} />
 
                 <PublicRoute exact path="/login" component={LoginForm} />
+
+                <PrivateRoute exact path="/demo" component={demo} />
+                <PrivateRoute exact path="/demo/:section" component={FloorForm} />
+                <PrivateRoute exact path="/demo/:section/:id" component={DemoForm} />
+                <PrivateRoute exact path="/demo/:section/:id/:tab" component={demo} />
+
                 <PrivateRoute exact path="/logbooksmain" component={Logbooks} />
                 <PrivateRoute exact path="/dashboard" component={Dashboard} />
 
@@ -138,7 +148,8 @@ function App() {
                 <PrivateRoute exact path="/building/:section" component={addBuilding} />
                 <PrivateRoute exact path="/building/:section/:id" component={editBuilding} />
                 <PrivateRoute exact path="/building/:section/:id/:tab" component={building} />
-
+                <PrivateRoute exact path="/buildingDemo" component={BuildingDemo} />
+                <PrivateRoute exact path="/DemoBuildingAdd/add" component={AddBuildingForm} />
                 <PrivateRoute exact path="/sectors" component={Sectors} />
                 <PrivateRoute exact path="/sector/:section" component={addSector} />
                 <PrivateRoute exact path="/sector/:section/:id" component={addSector} />

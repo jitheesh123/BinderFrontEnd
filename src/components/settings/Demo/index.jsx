@@ -13,18 +13,19 @@ import TableTopHeader from "../../../components/common/components/TableTopHeader
 import Pagination from "../../../components/common/components/Pagination";
 import Portal from "../../common/components/Portal";
 import ConfirmationModal from "../../../components/common/components/ConfirmationModal";
-import { floorTableData } from "../../../config/tableConfig";
+import { demoTableData } from "../../../config/tableConfig";
 import ViewModal from "../../common/components/ViewModal";
-import ViewFloor from "./viewFloor";
-import Form from "./floorForm";
+import ViewDemo from "./demoView";
+import Form from "./demoForm";
 import Loader from "../../common/components/Loader";
+import axios from "axios";
 
 class index extends Component {
     constructor(props) {
         super(props);
         this.state = {
             consultancyList: [],
-            tableData: floorTableData,
+            tableData: demoTableData,
             showConfirmation: false,
             selectedItem: null,
             params: this.props.floorReducer.entityParams.params,
@@ -47,14 +48,23 @@ class index extends Component {
     }
 
     componentDidMount = async () => {
+        const {  tableData } = this.state;
         await this.setState({
             tableData: {
                 ...this.state.tableData,
-                keys: floorTableData.keys,
-                config: this.props.floorReducer.entityParams.tableConfig || floorTableData.config
+                keys: demoTableData.keys,
+                config: this.props.floorReducer.entityParams.tableConfig || demoTableData.config
             }
         });
-        await this.getFloorData();
+        const {data}=await axios.get('https://jsonplaceholder.typicode.com/users')
+        console.log(data)
+        this.setState({
+            tableData: {
+                ...tableData,
+                data
+        }})
+        // await this.getFloorData();
+        this.props.setIsLoading(false);
     };
 
     componentDidUpdate = async prevProps => {
@@ -83,6 +93,7 @@ class index extends Component {
                 showWildCardFilter: this.state.params.filters ? true : false
             });
         }
+      
         this.props.setIsLoading(false);
     };
 
@@ -271,14 +282,14 @@ class index extends Component {
         const currentPath = this.props.location.pathname;
         this.setState({
             selectedFloor: id,
-            infoTabsData: [{ label: "Basic Details", path: `/floor/floorinfo/${id}/basicdetails`, key: "basicdetails" }]
+            infoTabsData: [{ label: "Basic Details", path: `/demo/demoinfo/${id}/basicdetails`, key: "basicdetails" }]
         });
-        history.push(`/floor/floorinfo/${id}/${"basicdetails"}`, { prevPath: path ? path : currentPath });
+        history.push(`/demo/demoinfo/${id}/${"basicdetails"}`, { prevPath: path ? path : currentPath });
     };
 
     getDataById = async id => {
-        await this.props.getFloorById(id);
-        return this.props.floorReducer.getFloorByIdResponse;
+      const data=  await axios.get(`https://jsonplaceholder.typicode.com/users/${id}`)
+        return data
     };
 
     showEditPage = floodId => {
@@ -457,7 +468,7 @@ class index extends Component {
             },
             tableData: {
                 ...this.state.tableData,
-                config: floorTableData.config
+                config: demoTableData.config
             }
         });
         this.updateEntityParams();
@@ -582,8 +593,8 @@ class index extends Component {
                     <LoadingOverlay active={isLoading} spinner={<Loader />}>
                         {section === "add" || section === "edit" ? (
                             <Form />
-                        ) : section === "floorinfo" ? (
-                            <ViewFloor
+                        ) : section === "demoinfo" ? (
+                            <ViewDemo
                                 keys={tableData.keys}
                                 config={tableData.config}
                                 infoTabsData={infoTabsData}
@@ -616,7 +627,7 @@ class index extends Component {
                                     <div className="lst-bt-nav">
                                         <div className="table table-ara">
                                             <TableTopHeader
-                                                entity={"Floor"}
+                                                entity={"demo"}
                                                 addItem={this.showAddForm}
                                                 handleGlobalSearch={this.handleGlobalSearch}
                                                 globalSearchKey={this.state.params.search}
@@ -646,8 +657,8 @@ class index extends Component {
                                                         updateWildCardFilter={this.updateWildCardFilter}
                                                         updateCommonFilter={this.updateCommonFilter}
                                                         commonFilter={this.state.params.list}
-                                                        hasEdit={pathname === "/demo" ? checkPermission("forms", "floors", "edit") : false}
-                                                        hasDelete={pathname === "/demo" ? checkPermission("forms", "floors", "delete") : false}
+                                                        hasEdit={pathname === "/floors" ? checkPermission("forms", "floors", "edit") : false}
+                                                        hasDelete={pathname === "/floors" ? checkPermission("forms", "floors", "delete") : false}
                                                         hasActionColumn={pathname === "/floors"}
                                                     />
                                                 </div>

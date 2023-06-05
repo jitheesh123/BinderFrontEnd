@@ -12,7 +12,7 @@ export const logbookGateWay = axios.create({
 
 logbookGateWay.interceptors.response.use(
     res => {
-        return res;
+        return res;                                                                       
     },
     function (res) {
         if (res.response && res.response.status === 401) {

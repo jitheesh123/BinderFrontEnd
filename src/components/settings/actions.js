@@ -5,6 +5,7 @@ const getConsultancyDropdown = () => {
     return async dispatch => {
         try {
             dispatch({ type: actionTypes.GET_CONSULTANCY_DROPDOWN_REQUEST });
+
             const res = await Service.getConsultancyDropdown();
             if (res && res.status === 200) {
                 if (res.data) {

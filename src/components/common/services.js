@@ -158,17 +158,16 @@ export const readNotification = id => logbookGateWay.patch(`${serviceEndPoints.c
 export const getFilterDropdownData = (params, path) =>
     logbookGateWay.get(`${serviceEndPoints.commonEndPoints.getFilterDropdownData}/${path}`, { params });
 
-export const getDeviceDocuments = (id,asset_id) => {
-
-    if(asset_id){
-       return  logbookGateWay.get(`${serviceEndPoints.commonEndPoints.getDeviceDocuments}?building_activity_id=${id}&asset_id=${asset_id}`)
-    }else{
-        return logbookGateWay.get(`${serviceEndPoints.commonEndPoints.getDeviceDocuments}?building_activity_id=${id}`)
+export const getDeviceDocuments = (id, asset_id) => {
+    if (asset_id) {
+        return logbookGateWay.get(`${serviceEndPoints.commonEndPoints.getDeviceDocuments}?building_activity_id=${id}&asset_id=${asset_id}`);
+    } else {
+        return logbookGateWay.get(`${serviceEndPoints.commonEndPoints.getDeviceDocuments}?building_activity_id=${id}`);
     }
-    }
+};
 export const saveDeviceCount = params => logbookGateWay.post(`${serviceEndPoints.commonEndPoints.saveDeviceCount}`, params);
 export const setAuditMode = params => logbookGateWay.patch(`${serviceEndPoints.commonEndPoints.setAuditMode}`, params);
-export const resetPassword = (params,id) => logbookGateWay.patch(`${serviceEndPoints.commonEndPoints.resetPassword}/${id}/update_password`, params);
+export const resetPassword = (params, id) => logbookGateWay.patch(`${serviceEndPoints.commonEndPoints.resetPassword}/${id}/update_password`, params);
 
 export const getGLTDetails = survey_date_id =>
     logbookGateWay.get(`${serviceEndPoints.commonEndPoints.getGLTDetails}?survey_date_id=${survey_date_id}`);

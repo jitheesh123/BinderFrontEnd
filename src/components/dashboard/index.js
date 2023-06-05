@@ -173,8 +173,7 @@ class index extends Component {
                                         {counts && counts.length
                                             ? counts.map(item => {
                                                   return <EntityCount countData={item} />;
-                                              }
-                                              )
+                                              })
                                             : null}
                                     </div>
                                 ) : null}
