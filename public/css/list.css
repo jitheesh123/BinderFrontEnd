@@ -1,0 +1,183 @@
+/* 01--- Font Seting ------------*/
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Poppins:wght@200;300;400;600;700;800;900&display=swap");
+.list-sec {
+  padding: 0px 10px 10px;
+  overflow: hidden;
+}
+.list-sec .table-section {
+  overflow: auto;
+  height: calc(100vh - 250px);
+}
+.list-sec .table-section .table {
+  min-width: 1200px;
+}
+.list-sec .table-section .table thead tr th {
+  font-size: 13px;
+  color: #103BB5;
+  font-family: "Inter", sans-serif;
+  background-color: #f5f5f5;
+  padding: 15px 10px;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+.list-sec .table-section .table thead tr th.img-sq-box {
+  width: 54px;
+  text-align: center;
+  min-width: 54px !important;
+  max-width: 54px !important;
+}
+.list-sec .table-section .table thead tr th.action {
+  width: 40px;
+  min-width: 40px !important;
+  max-width: 40px !important;
+  text-align: center;
+}
+.list-sec .table-section .table thead tr th span.rop-icon {
+  width: 20px;
+  position: absolute;
+  right: 10px;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  box-shadow: 0px 1px 2px #00000017;
+  text-align: center;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.list-sec .table-section .table thead tr th span.rop-icon img {
+  width: 10px;
+}
+.list-sec .table-section .table tbody tr td {
+  font-size: 13px;
+  color: #697489;
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  vertical-align: baseline;
+}
+.list-sec .table-section .table tbody tr td.action {
+  width: 40px;
+  min-width: 40px !important;
+  max-width: 40px !important;
+  text-align: center;
+}
+.list-sec .table-section .table tbody tr td.img-sq-box {
+  width: 54px;
+  text-align: center;
+  min-width: 54px !important;
+  max-width: 54px !important;
+}
+.list-sec .table-section .table tbody tr td ul.dropdown-menu {
+  padding: 10px;
+  left: -8px !important;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  box-shadow: 0px 0px 6px #00000024;
+  border: none;
+  top: 8px !important;
+}
+.list-sec .table-section .table tbody tr td ul.dropdown-menu li {
+  padding-bottom: 10px;
+  padding-top: 10px;
+  border-bottom: 1px solid #E6EAF2;
+}
+.list-sec .table-section .table tbody tr td ul.dropdown-menu li:last-child {
+  border-bottom: none;
+}
+.list-sec .table-section .table tbody tr td ul.dropdown-menu li a {
+  text-decoration: none;
+  color: #697489;
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+}
+.list-sec .table-section .table tbody tr td ul.dropdown-menu li a img {
+  margin-right: 10px;
+  width: 15px;
+}
+
+.list-area {
+  display: flex;
+  flex-direction: column;
+  padding: 0px;
+  background-color: #fff;
+  border-top-left-radius: 35px;
+  width: 100%;
+}
+.list-area .lst-bt-nav {
+  background-color: #E6EAF2;
+  padding: 30px 20px 0px;
+  border-top-left-radius: 20px;
+  height: 100%;
+}
+.list-area .fot-nav {
+  padding: 15px 15px !important;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+}
+.list-area .cus-usr {
+  width: 350px;
+}
+.list-area .usr-vw {
+  padding: 0px 10px;
+  background-color: rgba(16, 59, 181, 0.17);
+  border-radius: 5px;
+  display: flex;
+  align-content: center;
+}
+.list-area .usr-vw .amd {
+  padding: 10px 10px 10px 0px;
+  color: #697489;
+  display: flex;
+  min-width: 75px;
+  align-items: center;
+}
+.list-area .usr-vw .usr-sld {
+  width: 300px;
+}
+.list-area .usr-vw .usr-sld .slider {
+  width: 100%;
+  padding: 0px 20px;
+  display: flex;
+  align-items: center;
+  height: 50px;
+}
+.list-area .usr-vw .usr-sld .slider .slick-list .slide {
+  border-radius: 5px;
+  overflow: hidden;
+  width: 35px !important;
+  margin-right: 10px !important;
+}
+.list-area .usr-vw .usr-sld .slider .slick-list .slide a {
+  text-align: center;
+  width: 100%;
+  display: block;
+  color: #707070;
+  font-size: 14px;
+  font-family: "Inter", sans-serif;
+  text-decoration: none;
+}
+.list-area .usr-vw .usr-sld .slider .slick-list .slide a img {
+  width: 100%;
+}
+.list-area .usr-vw .usr-sld .slider .prv-arw {
+  background-image: url(../images/lft-arrow.svg);
+  height: 15px;
+  width: 15px;
+  background-size: contain;
+  cursor: pointer;
+  position: absolute;
+  left: -5px;
+}
+.list-area .usr-vw .usr-sld .slider .nxt-arw {
+  background-image: url(../images/rgt-arrow.svg);
+  height: 15px;
+  width: 15px;
+  background-size: contain;
+  cursor: pointer;
+  position: absolute;
+  right: -5px;
+}
+.list-area .usr-vw .usr-sld .slider ul.slick-dots {
+  display: none !important;
+}
+
+/*# sourceMappingURL=list.css.map */

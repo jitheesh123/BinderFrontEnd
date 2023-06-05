@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="163.001" height="45" viewBox="0 0 163.001 45">
+  <g id="Group_5558" data-name="Group 5558" transform="translate(-33.999 -29)">
+    <g id="Group_5319" data-name="Group 5319" transform="translate(383.154 22.647)">
+      <g id="Group_5317" data-name="Group 5317" transform="translate(-349.155 8.353)">
+        <path id="Path_2783" data-name="Path 2783" d="M-331.678,24.851V12.11a3.757,3.757,0,0,0-3.757-3.757H-345.4a3.756,3.756,0,0,0-3.756,3.757V44.6a3.756,3.756,0,0,0,3.756,3.757h30.219a3.757,3.757,0,0,0,3.756-3.757V32.364a3.757,3.757,0,0,0-3.756-3.757h-12.741A3.756,3.756,0,0,1-331.678,24.851Z" transform="translate(349.155 -8.353)" fill="#103bb5"/>
+      </g>
+      <g id="Group_5318" data-name="Group 5318" transform="translate(-341.532 5.353)">
+        <path id="Path_2785" data-name="Path 2785" d="M-317.388,34.441V11.353h4.74V27.162a6.88,6.88,0,0,1,5.163-1.947c5.332,0,9.057,3.724,9.057,9.226a9.469,9.469,0,0,1-9.48,9.226C-313.41,43.668-317.388,39.943-317.388,34.441Zm14.22,0a4.6,4.6,0,0,0-4.74-4.825,4.649,4.649,0,0,0-4.74,4.825,4.7,4.7,0,0,0,4.74,4.825A4.649,4.649,0,0,0-303.168,34.441Z" transform="translate(317.388 -8.353)" fill="#fff"/>
+      </g>
+      <path id="Path_2784" data-name="Path 2784" d="M-285.32,24.733V11.992a3.754,3.754,0,0,0-2.84-3.639v16.38c0,4.577,4.67,8.3,9.247,8.3h13.848v-.787a3.756,3.756,0,0,0-3.756-3.757h-12.741A3.756,3.756,0,0,1-285.32,24.733Z" transform="translate(-46.358)" fill="#5d5d5d" opacity="0.4" style="mix-blend-mode: multiply;isolation: isolate"/>
+      <path id="Path_2786" data-name="Path 2786" d="M-271.232,22.634-281.28,12.587a4.012,4.012,0,0,1,1.189,2.74V28.069a3.756,3.756,0,0,0,3.757,3.757h12.741a3.74,3.74,0,0,1,2.62,1.068Z" transform="translate(-51.587 -3.218)" fill="#2d3f74"/>
+    </g>
+    <text id="binder_management" data-name="binder
+management" transform="translate(80 53)" fill="#103bb5" font-size="23" font-family="Poppins-Medium, Poppins" font-weight="500"><tspan x="0" y="0">Binder</tspan><tspan fill="#8f9ec7" font-size="17"><tspan x="0" y="15">Management</tspan></tspan></text>
+  </g>
+</svg>

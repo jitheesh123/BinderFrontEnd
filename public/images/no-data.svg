@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <g id="vuesax_bold_gallery-slash" data-name="vuesax/bold/gallery-slash" transform="translate(-492 -252)">
+    <g id="gallery-slash">
+      <path id="Vector" d="M19.765.225a.773.773,0,0,0-1.09,0L.225,18.685a.773.773,0,0,0,0,1.09.791.791,0,0,0,.54.22.758.758,0,0,0,.54-.23L19.765,1.3A.743.743,0,0,0,19.765.225Z" transform="translate(494.005 254.005)" fill="#7949f3"/>
+      <path id="Vector-2" data-name="Vector" d="M4.76,2.38A2.38,2.38,0,1,1,2.38,0,2.38,2.38,0,0,1,4.76,2.38Z" transform="translate(498.62 257.62)" fill="#7949f3"/>
+      <path id="Vector-3" data-name="Vector" d="M16.22,0,15,1.22a5.7,5.7,0,0,1,.11,1.2v4.8l-.13-.11a2.229,2.229,0,0,0-2.82,0L8,10.68a2.225,2.225,0,0,1-2.61.15L0,16.22a7.021,7.021,0,0,0,2.42.39H10.8c3.64,0,5.81-2.17,5.81-5.81V2.42A7.021,7.021,0,0,0,16.22,0Z" transform="translate(497.39 257.39)" fill="#7949f3"/>
+      <path id="Vector-4" data-name="Vector" d="M18.46,1.54,17.4,2.6a4.337,4.337,0,0,0-3.21-1.1H5.81C2.99,1.5,1.5,2.99,1.5,5.81v8.38a5.333,5.333,0,0,0,.35,1.97l3.74-2.51a2.1,2.1,0,0,1,1.12-.36L1.54,18.46a4.842,4.842,0,0,1-.98-1.43A6.723,6.723,0,0,1,0,14.19V5.81C0,2.17,2.17,0,5.81,0h8.38A5.837,5.837,0,0,1,18.46,1.54Z" transform="translate(494 254)" fill="#7949f3"/>
+      <path id="Vector-5" data-name="Vector" d="M0,0H24V24H0Z" transform="translate(492 252)" fill="none" opacity="0"/>
+    </g>
+  </g>
+</svg>

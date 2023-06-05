@@ -1,0 +1,128 @@
+/* 01--- Font Seting ------------*/
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Poppins:wght@200;300;400;600;700;800;900&display=swap");
+header .mnu-ico button {
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+header .mnu-ico button[aria-expanded=true] .open {
+  display: none;
+}
+header .mnu-ico button[aria-expanded=false] .close {
+  display: none;
+}
+header a.navbar-brand {
+  margin: 0px;
+  padding: 0px;
+  width: 170px;
+  padding: 15px;
+}
+header .navbar {
+  padding: 0px;
+}
+header .navbar .mnu-info ul.prf-lst {
+  display: flex;
+  list-style: none;
+  padding: 5px 5px 5px 15px;
+  background: rgba(17, 17, 17, 0.1);
+  border-bottom-left-radius: 45px;
+  border-top-left-radius: 45px;
+}
+header .navbar .mnu-info ul.prf-lst li.nav-item a.nav-link {
+  display: flex;
+  background-color: #fff;
+  border-radius: 30px;
+  align-items: center;
+  padding: 8px;
+}
+header .navbar .mnu-info ul.prf-lst li.nav-item a.nav-link::after {
+  border: none;
+  background-image: url(../images/down-arrow.svg);
+  width: 10px;
+  height: 15px;
+  background-repeat: no-repeat;
+  margin-right: 5px;
+}
+header .navbar .mnu-info ul.prf-lst li.nav-item a.nav-link .prf-img {
+  width: 35px;
+  height: 35px;
+  border-radius: 100%;
+  overflow: hidden;
+}
+header .navbar .mnu-info ul.prf-lst li.nav-item a.nav-link .pdf-name {
+  margin-left: 10px;
+  margin-right: 20px;
+  font-size: 14px;
+  font-family: "Inter", sans-serif;
+  color: #060200;
+}
+header .navbar .mnu-info ul.prf-lst li.nav-item .dropdown-menu {
+  width: 100%;
+  margin-top: 10px;
+  border-radius: 10px;
+  padding: 10px;
+}
+header .navbar .mnu-info ul.prf-lst li.nav-item .dropdown-menu a {
+  margin-left: 10px;
+  margin-right: 20px;
+  font-size: 14px;
+  font-family: "Inter", sans-serif;
+  color: #060200;
+  text-decoration: none;
+}
+header .navbar .mnu-info ul.prf-lst li.nav-item .dropdown-menu a:hover {
+  opacity: 0.8;
+}
+
+@media (min-width: 768px) {
+  .navbar .mnu-ico {
+    width: 100px;
+    text-align: center;
+  }
+}
+@media (max-width: 767px) {
+  .navbar {
+    display: flex;
+  }
+  .navbar .navbar-brand {
+    order: 1;
+  }
+  .navbar .mnu-info {
+    order: 2;
+  }
+  .navbar .mnu-info .prf-lst {
+    border-radius: 45px !important;
+    padding-right: 80px !important;
+  }
+  .navbar .mnu-ico {
+    order: 3;
+    position: absolute;
+    right: 20px;
+  }
+}
+@media (max-width: 600px) {
+  .navbar {
+    display: flex;
+  }
+  .navbar .navbar-brand {
+    order: 1;
+  }
+  .navbar .mnu-info {
+    order: 3;
+    width: 100%;
+  }
+  .navbar .mnu-info .prf-lst {
+    border-radius: 0px !important;
+    padding-right: 10px !important;
+    width: 100%;
+    justify-content: flex-end;
+  }
+  .navbar .mnu-ico {
+    order: 2;
+    position: relative;
+    right: unset;
+  }
+}
+
+/*# sourceMappingURL=header.css.map */

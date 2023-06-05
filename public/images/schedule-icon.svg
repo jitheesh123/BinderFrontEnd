@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="27.296" height="27.069" viewBox="0 0 27.296 27.069">
+  <g id="Group_6171" data-name="Group 6171" transform="translate(-54 -694.932)">
+    <g id="calendar_8_" data-name="calendar (8)" transform="translate(54 694.932)">
+      <g id="Group_6170" data-name="Group 6170">
+        <g id="Group_6169" data-name="Group 6169">
+          <path id="Path_3709" data-name="Path 3709" d="M23.214,3.482a1.161,1.161,0,0,0-1.161-1.161H18.571V0H16.25V2.321H12.768V0H10.446V2.321H6.964V0H4.643V2.321H1.161A1.161,1.161,0,0,0,0,3.482V5.8H23.214Z" fill="#fff"/>
+          <path id="Path_3710" data-name="Path 3710" d="M18.551,134.146a8.112,8.112,0,0,1,4.664,0V128H0v15.089a1.161,1.161,0,0,0,1.161,1.161H13.11A8.115,8.115,0,0,1,18.551,134.146Zm-2.3-3.824h2.321v2.321H16.25Zm-5.8,0h2.321v2.321H10.446ZM6.964,141.929H4.643v-2.321H6.964Zm0-4.643H4.643v-2.321H6.964Zm0-4.643H4.643v-2.321H6.964Zm3.482,2.321h2.321v2.321H10.446Z" transform="translate(0 -121.036)" fill="#fff"/>
+        </g>
+      </g>
+    </g>
+    <path id="time" d="M6.382,0a6.382,6.382,0,1,0,6.382,6.382A6.389,6.389,0,0,0,6.382,0Zm1.43,8.94L5.584,6.712V3.191h1.6V6.052L8.94,7.812Z" transform="translate(68.532 709.237)" fill="#fff"/>
+  </g>
+</svg>

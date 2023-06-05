@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="description" content="Free Web tutorials">
+		<meta name="keywords" content="HTML, CSS, JavaScript">
+		<meta name="author" content="John Doe">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<!-- Style sheet -->
+		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/main.css">
+		
+	</head>
+	<body>
+		<header>
+			<nav class="navbar">
+				<div class="mnu-ico">
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation">
+					<img src="assets/images/menu.svg" class="close"/>
+					<img src="assets/images/clear.svg" class="open"/>
+					</button>
+				</div>
+				<div class="navbar-brand">
+					<img src="assets/images/logo.svg"/>
+				</div>
+				<div class="mnu-info ml-auto">
+					<ul class="prf-lst">
+						<li class="nav-item dropdown">
+							<div class="nav-link dropdown-toggle"  id="profile-info" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" >
+								<div class="prf-img">
+									<img src="assets/images/profileimg.jpg" />
+								</div>
+								<div class="pdf-name">Mathew John</div>
+							</div>
+							<div class="dropdown-menu" aria-labelledby="profile-info">
+								<span>Profile</span>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</nav>
+		</header>
+		<aside class="sidenav navbar-collapse collapse show"  id="navbarSupportedContent">
+			<ul class="navbar">
+				<li class="nav-item">
+					<a class="nav-link" href="#">
+						<div class="icn-sec">
+							<img src="assets/images/Dashboard.svg"/>
+						</div>
+						<span>Dashboard</span>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#">
+						<div class="icn-sec">
+							<img src="assets/images/user.svg"/>
+						</div>
+						<span>Logbooks</span>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#">
+						<div class="icn-sec">
+							<img src="assets/images/Report.svg"/>
+						</div>
+						<span>Reports</span>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a href="#setting" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="setting" class="nav-link">
+						<div class="icn-sec">
+							<img src="assets/images/setting.svg"/>
+						</div>
+						<span>Settings</span>
+					</a>
+					<div class="viw-sub">
+						<div class="collapse" id="setting">
+							<ul class="view">
+								<li>
+									<a href="#" class="">Building Type</a>
+								</li>
+								<li>
+									<a href="#" class="">Users</a>
+								</li>
+								<li>
+									<a href="#" class="">User Permissions</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#">
+						<div class="icn-sec">
+							<img src="assets/images/logout.svg"/>
+						</div>
+						<span>Logout</span>
+					</a>
+				</li>
+			</ul>
+		</aside>
+		<section class="cont-ara site-list">
+			<div class="list-area ">
+				<div class="top-slider"> 
+					<i class="material-icons" data-toggle="collapse" data-target="#collapseExample" aria-expanded="true" aria-controls="collapseExample">expand_more</i>
+					<div class="collapse show" id="collapseExample">
+						<div class="customer-logos slider">
+							<div class="slide">
+								<a href="">Fire Systems Testing</a>
+							</div>
+							<div class="slide">
+								<a href="">Fire Drills</a>
+							</div>
+							<div class="slide">
+								<a href="">Generator Testing</a>
+							</div>
+							<div class="slide">
+								<a href="">EOC Logbook</a>
+							</div>
+							<div class="slide">
+								<a href="">Account Control</a>
+							</div>
+							<div class="slide">
+								<a href="">Department P & P</a>
+							</div>
+							<div class="slide">
+								<a href="">BMP</a>
+							</div>
+							<div class="slide">
+								<a href="">Employee Training</a>
+							</div>
+							<div class="slide">
+								<a href="">Fire Drills</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="lst-bt-nav">
+					<div class="table table-ara">
+						<div class="top-fil-ara title-btn-wrapper">
+							<div class="cap">
+								<h4>Campus</h4>
+							</div>
+							<div class="right-cont">
+								<div class="btn-section-2">
+									<div class="btn-toggle">
+										<button class="btn btn-top active" title="Filter"><img src="assets/images/filter.svg" class="mr-0"> </button>
+										<button class="btn btn-top" title="Filter Clear"><img src="assets/images/filter-cross.svg" class="mr-0"></button>
+									</div>
+									<button class="btn btn-top" title="Icon &amp; color info"><img src="assets/images/color-wheel.svg"> <span class="btn-txt">Icon &amp; color info</span></button>
+									<button class="btn btn-top" title="Export EXL"><img src="assets/images/export.svg"> <span class="btn-txt">Export EXL</span></button>
+									<button class="btn btn-top" title="Email"><img src="assets/images/mail.svg"> <span class="btn-txt">Email</span></button>
+									<button class="btn btn-top" title="Column Window"><img src="assets/images/colmns.svg"> <span class="btn-txt">Column Window</span></button>
+									<button class="btn btn-top" title="Reset Columns"><img src="assets/images/reset-column.svg"> <span class="btn-txt">Reset Columns</span></button>
+								</div>
+								<div class="sr-sec search-section">
+									<input type="text" class="form-control" placeholder="Search">
+									<button type="submit" class="btn btn-search"> <img src="assets/images/serach.svg"> </button>
+								</div>
+								<div class="fil-btn">
+									<button class="btn btn-add" data-toggle="modal" data-target="#view-modal"> <span class="icon"> <img src="assets/images/add-new-region.svg"></span>Add New Campus</button>
+								</div>
+								<div class="rgt-block">
+									<button class="cal-opn-btn" type="">Calendar</button>
+									<div class="dropdown-block">
+										<div class="dropdown dropdown-more">
+											<button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+												<span class="material-icons">more_vert</span>
+											</button>
+											<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+												<div class="btn-toggle">
+													<button class="btn btn-top" title="Filter"><img src="assets/images/filter.svg"> Filter </button>
+													<button class="btn btn-top" title="Filter Clear"><img src="assets/images/filter-cross.svg">Filter Clear</button>
+												</div>
+												<button class="dropdown-item btn btn-top"><img src="assets/images/color-wheel.svg">Icon &amp; color info</button>
+												<button class="dropdown-item btn btn-top"><img src="assets/images/export.svg">Export EXL</button>
+												<button class="dropdown-item btn btn-top"><img src="assets/images/mail.svg">Email</button>
+												<button class="dropdown-item btn btn-top"><img src="assets/images/colmns.svg">Column Window</button>
+												<button class="dropdown-item btn btn-top"><img src="assets/images/reset-column.svg">Reset  Columns</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="list-sec">
+							<div class="region-table">
+
+									<div class="table-section">
+										<table class="table table-bordered file-system-table">
+											<thead>
+												<tr>
+													<th class="img-sq-box">
+														<img src="assets/images/table-blue-dots.svg"/>
+													</th>
+													<th class="ref">Consultancy Code</th>
+													<th class="region">Consultancy Name</th>
+													<th class="consultancy">Comments</th>
+													<th class="client">Created At</th>
+													<th class="asited-prj">Updated At</th>
+												</tr>
+											</thead>
+											<tbody>
+												
+												<tr>
+													<td class="img-sq-box">
+														<img src="assets/images/table-dot-white.svg">
+													</td>
+													<td>Ref</td>
+													<td>Demo</td>
+													<td>Demo</td>
+													<td>Demo</td>
+													<td>Demo</td>
+												</tr>
+												<tr>
+													<td class="img-sq-box">
+														<img src="assets/images/table-dot-white.svg">
+													</td>
+													<td>Ref</td>
+													<td>Demo</td>
+													<td>Demo</td>
+													<td>Demo</td>
+													<td>Demo</td>
+												</tr>
+												<tr>
+													<td class="img-sq-box">
+														<img src="assets/images/table-dot-white.svg">
+													</td>
+													<td>Ref</td>
+													<td>Demo</td>
+													<td>Demo</td>
+													<td>Demo</td>
+													<td>Demo</td>
+												</tr><tr>
+													<td class="img-sq-box">
+														<img src="assets/images/table-dot-white.svg">
+													</td>
+													<td>Ref</td>
+													<td>Demo</td>
+													<td>Demo</td>
+													<td>Demo</td>
+													<td>Demo</td>
+												</tr><tr>
+													<td class="img-sq-box">
+														<img src="assets/images/table-dot-white.svg">
+													</td>
+													<td>Ref</td>
+													<td>Demo</td>
+													<td>Demo</td>
+													<td>Demo</td>
+													<td>Demo</td>
+												</tr><tr>
+													<td class="img-sq-box">
+														<img src="assets/images/table-dot-white.svg">
+													</td>
+													<td>Ref</td>
+													<td>Demo</td>
+													<td>Demo</td>
+													<td>Demo</td>
+													<td>Demo</td>
+												</tr><tr>
+													<td class="img-sq-box">
+														<img src="assets/images/table-dot-white.svg">
+													</td>
+													<td>Ref</td>
+													<td>Demo</td>
+													<td>Demo</td>
+													<td>Demo</td>
+													<td>Demo</td>
+												</tr><tr>
+													<td class="img-sq-box">
+														<img src="assets/images/table-dot-white.svg">
+													</td>
+													<td>Ref</td>
+													<td>Demo</td>
+													<td>Demo</td>
+													<td>Demo</td>
+													<td>Demo</td>
+												</tr><tr>
+													<td class="img-sq-box">
+														<img src="assets/images/table-dot-white.svg">
+													</td>
+													<td>Ref</td>
+													<td>Demo</td>
+													<td>Demo</td>
+													<td>Demo</td>
+													<td>Demo</td>
+												</tr><tr>
+													<td class="img-sq-box">
+														<img src="assets/images/table-dot-white.svg">
+													</td>
+													<td>Ref</td>
+													<td>Demo</td>
+													<td>Demo</td>
+													<td>Demo</td>
+													<td>Demo</td>
+												</tr><tr>
+													<td class="img-sq-box">
+														<img src="assets/images/table-dot-white.svg">
+													</td>
+													<td>Ref</td>
+													<td>Demo</td>
+													<td>Demo</td>
+													<td>Demo</td>
+													<td>Demo</td>
+												</tr><tr>
+													<td class="img-sq-box">
+														<img src="assets/images/table-dot-white.svg">
+													</td>
+													<td>Ref</td>
+													<td>Demo</td>
+													<td>Demo</td>
+													<td>Demo</td>
+													<td>Demo</td>
+												</tr><tr>
+													<td class="img-sq-box">
+														<img src="assets/images/table-dot-white.svg">
+													</td>
+													<td>Ref</td>
+													<td>Demo</td>
+													<td>Demo</td>
+													<td>Demo</td>
+													<td>Demo</td>
+												</tr><tr>
+													<td class="img-sq-box">
+														<img src="assets/images/table-dot-white.svg">
+													</td>
+													<td>Ref</td>
+													<td>Demo</td>
+													<td>Demo</td>
+													<td>Demo</td>
+													<td>Demo</td>
+												</tr><tr>
+													<td class="img-sq-box">
+														<img src="assets/images/table-dot-white.svg">
+													</td>
+													<td>Ref</td>
+													<td>Demo</td>
+													<td>Demo</td>
+													<td>Demo</td>
+													<td>Demo</td>
+												</tr><tr>
+													<td class="img-sq-box">
+														<img src="assets/images/table-dot-white.svg">
+													</td>
+													<td>Ref</td>
+													<td>Demo</td>
+													<td>Demo</td>
+													<td>Demo</td>
+													<td>Demo</td>
+												</tr><tr>
+													<td class="img-sq-box">
+														<img src="assets/images/table-dot-white.svg">
+													</td>
+													<td>Ref</td>
+													<td>Demo</td>
+													<td>Demo</td>
+													<td>Demo</td>
+													<td>Demo</td>
+												</tr>
+												
+											</tbody>
+										</table>
+									</div>
+						
+							</div>
+						</div>
+					</div>
+				
+					<div class="fot-nav">
+						<ul class="pagnation">
+							<li class="active">
+								<span>01</span>
+							</li>
+							<li>
+								<span href="#">02</span>
+							</li>
+							<li>
+								<span href="#">03</span>
+							</li>
+						</ul>
+						<ul class="pagnation prv-nxt">
+							<li>
+								<a href="#" class="prv"> <img src="assets/images/lft-arrow.svg"/> Prev</a>
+							</li>
+							<li>
+								<a href="#" class="nxt">Next <img src="assets/images/rgt-arrow.svg"/></a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+        </section>
+  
+        <!-- Modal -->
+        <div id="view-modal" class="modal fade view-detail-mod" role="dialog">
+            <div class="modal-dialog modal-dialog-centered">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="d-flex head-sec-view">
+                            <h4 class="modal-title">View Details</h4>
+                            <div class="inp-group">
+                                <select class="form-control">
+                                    <option>All</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <i class="material-icons">close </i>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="content-outer">
+                            <div class="sr-sec search-section">
+                                <input type="text" class="form-control" placeholder="Search">
+                                <button type="submit" class="btn btn-search"> <img src="assets/images/serach.svg"> </button>
+                            </div>
+                            <div class="containter-check d-flex flex-wrap">
+                            <div class="outer-check col-md-6">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck" name="example1">
+                                    <label class="custom-control-label" for="customCheck">Select All</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                            </div>
+                            <div class="outer-check col-md-6">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck" name="example1">
+                                    <label class="custom-control-label" for="customCheck">Select All</label>
+                                </div>
+                            </div>
+                            <div class="outer-check col-md-6">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck" name="example1">
+                                    <label class="custom-control-label" for="customCheck">Select All</label>
+                                </div>
+                            </div>
+                            <div class="outer-check col-md-6">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck" name="example1">
+                                    <label class="custom-control-label" for="customCheck">Select All</label>
+                                </div>
+                            </div>
+                            <div class="outer-check col-md-6">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck" name="example1">
+                                    <label class="custom-control-label" for="customCheck">Select All</label>
+                                </div>
+                            </div>
+                            <div class="outer-check col-md-6">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck" name="example1">
+                                    <label class="custom-control-label" for="customCheck">Select All</label>
+                                </div>
+                            </div>
+                            <div class="outer-check col-md-6">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck" name="example1">
+                                    <label class="custom-control-label" for="customCheck">Select All</label>
+                                </div>
+                            </div>
+                            <div class="outer-check col-md-6">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck" name="example1">
+                                    <label class="custom-control-label" for="customCheck">Select All</label>
+                                </div>
+                            </div>
+                            <div class="outer-check col-md-6">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck" name="example1">
+                                    <label class="custom-control-label" for="customCheck">Select All</label>
+                                </div>
+                            </div>
+                            <div class="outer-check col-md-6">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck" name="example1">
+                                    <label class="custom-control-label" for="customCheck">Select All</label>
+                                </div>
+                            </div>
+                            <div class="outer-check col-md-6">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck" name="example1">
+                                    <label class="custom-control-label" for="customCheck">Select All</label>
+                                </div>
+                            </div>
+                            <div class="outer-check col-md-6">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck" name="example1">
+                                    <label class="custom-control-label" for="customCheck">Select All</label>
+                                </div>
+                            </div>
+                            <div class="outer-check col-md-6">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck" name="example1">
+                                    <label class="custom-control-label" for="customCheck">Select All</label>
+                                </div>
+                            </div>
+                            <div class="outer-check col-md-6">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck" name="example1">
+                                    <label class="custom-control-label" for="customCheck">Select All</label>
+                                </div>
+                            </div>
+                            <div class="outer-check col-md-6">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck" name="example1">
+                                    <label class="custom-control-label" for="customCheck">Select All</label>
+                                </div>
+                            </div>
+                            <div class="outer-check col-md-6">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck" name="example1">
+                                    <label class="custom-control-label" for="customCheck">Select All</label>
+                                </div>
+                            </div>
+                            <div class="outer-check col-md-6">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck" name="example1">
+                                    <label class="custom-control-label" for="customCheck">Select All</label>
+                                </div>
+                            </div>
+                            <div class="outer-check col-md-6">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck" name="example1">
+                                    <label class="custom-control-label" for="customCheck">Select All</label>
+                                </div>
+                            </div>
+                            <div class="outer-check col-md-6">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck" name="example1">
+                                    <label class="custom-control-label" for="customCheck">Select All</label>
+                                </div>
+                            </div>
+                            <div class="outer-check col-md-6">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck" name="example1">
+                                    <label class="custom-control-label" for="customCheck">Select All</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                      
+                    </div>
+                
+                </div>
+            </div>
+        </div>
+
+		<!-- Script> -->
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/slick.js"></script>
+		<script src="assets/js/popper.min.js"></script>
+		<script src="assets/js/bootstrap.min.js"></script>
+		<script src="assets/js/main.js"></script>
+		
+	</body>
+</html>

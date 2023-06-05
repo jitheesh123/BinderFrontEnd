@@ -1,0 +1,261 @@
+/* 01--- Font Seting ------------*/
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Poppins:wght@200;300;400;600;700;800;900&display=swap");
+/* 01--- Font Seting ------------*/
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Poppins:wght@200;300;400;600;700;800;900&display=swap");
+.btn-create {
+  color: #fff;
+  font-family: "Inter", sans-serif;
+  background: #103BB5;
+  text-transform: uppercase;
+  opacity: 1;
+  font-size: 13px;
+  padding: 10px 25px 10px 15px;
+  transition: 0.3s;
+  outline: none;
+  border: none;
+  box-shadow: none;
+}
+.btn-create:hover {
+  color: #fff;
+  opacity: 0.8;
+}
+.btn-create .tic {
+  color: #fff;
+  font-size: 12px;
+  background: #2FC8D9;
+  border-radius: 100%;
+  margin-right: 10px;
+  padding: 3px;
+  opacity: 0.7;
+}
+
+.btn-cancel {
+  color: #697489;
+  font-family: "Inter", sans-serif;
+  background: #fff;
+  text-transform: uppercase;
+  opacity: 1;
+  font-size: 13px;
+  padding: 10px 25px 10px 25px;
+  transition: 0.3s;
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+.btn-cancel:hover {
+  color: #6c6c6c;
+  opacity: 0.8;
+}
+
+.btn-upload {
+  position: absolute;
+  right: 30px;
+  bottom: 20px;
+  border: none;
+  background: transparent;
+  transition: 0.3s;
+}
+
+@media (max-width: 1559px) {
+  .dash .dash-cont .pub-ara.six .items .itm-btm .head h2 {
+    font-size: 18px;
+    line-height: 22px;
+    height: 45px;
+  }
+}
+/* The container */
+.container-check {
+  display: block;
+  position: relative;
+  padding-left: 40px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  text-align: left;
+  font: 18px/15px "Poppins", sans-serif;
+  font-weight: 500;
+  letter-spacing: 0px;
+  color: #103BB5;
+  text-transform: capitalize;
+  height: 25px;
+  padding-top: 5px;
+}
+
+.container-check input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 24px;
+  width: 24px;
+  background-color: #E8E8F3;
+}
+
+.container-check:hover input ~ .checkmark {
+  background-color: #E8E8F3;
+}
+
+.container-check input:checked ~ .checkmark {
+  background-color: #E8E8F3;
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.container-check input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.container-check .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid #103BB5;
+  border-width: 0 1px 1px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+body {
+  margin: 0px;
+  padding: 0px;
+}
+body::before {
+  display: none !important;
+}
+body .login header nav .navbar-brand img {
+  width: 130px;
+}
+body .login main {
+  padding-top: 63px;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-image: url(../images/LoginV4.png) !important;
+  background-size: 100%;
+  background-repeat: round;
+}
+body .login main .log-sec {
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 6px #0000000D;
+  border: 1px solid #E2E2EE;
+  max-width: 510px;
+  padding: 40px 60px;
+  width: 50%;
+}
+body .login main .log-sec .hed {
+  margin-bottom: 25px;
+}
+body .login main .log-sec .hed h3 {
+  margin-bottom: 1px;
+  font: normal normal bold 32px/31px "Poppins", sans-serif;
+  letter-spacing: 0px;
+  color: #103BB5;
+}
+body .login main .log-sec .hed small {
+  text-align: left;
+  font: normal normal medium 18px/15px "Poppins", sans-serif;
+  letter-spacing: 0px;
+  color: #2F3953;
+  text-transform: capitalize;
+  opacity: 0.8;
+}
+body .login main .log-sec .form-group {
+  margin-bottom: 17px !important;
+}
+body .login main .log-sec .form-group .form-control {
+  background: #F7F7F9 0% 0% no-repeat padding-box;
+  border: none;
+  border-radius: 3px;
+  padding: 20px !important;
+  height: auto;
+  text-align: left;
+  color: #103BB5;
+  font-weight: 500;
+  font-family: "Poppins", sans-serif;
+  opacity: 0.8;
+  outline: none;
+  box-shadow: none;
+}
+body .login main .log-sec .btn-log {
+  font-family: "Poppins", sans-serif;
+  background: #103BB5 0% 0% no-repeat padding-box;
+  opacity: 1;
+  width: 100%;
+  padding: 20px;
+  color: #FFFFFF;
+  text-transform: uppercase;
+}
+body .login main .forgot {
+  margin-top: 50px;
+  width: 100%;
+  text-align: center;
+}
+body .login main .forgot h6 {
+  font: normal normal normal 18px/30px "Inter", sans-serif;
+  letter-spacing: 0px;
+  color: #3A4D4E;
+}
+body .login main .forgot h6 a {
+  text-decoration: underline;
+  font: normal normal normal 18px/30px "Inter", sans-serif;
+  letter-spacing: 0px;
+  color: #103BB5;
+  opacity: 1;
+}
+
+@media (max-width: 1550px) {
+  body .login main .log-sec .hed h3 {
+    font-size: 28px;
+  }
+  body .login main .log-sec .form-group .form-control {
+    padding: 15px;
+    margin-bottom: 15px;
+  }
+  body .login main .log-sec .btn-log {
+    padding: 15px;
+  }
+  body .login main .forgot {
+    margin-top: 30px;
+  }
+}
+@media (max-width: 992px) {
+  body {
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  body .login main .log-sec {
+    width: 100%;
+  }
+}
+@media (max-width: 767px) {
+  body .login main {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  body .login main .log-sec {
+    width: 100%;
+    padding: 20px;
+  }
+}
+
+/*# sourceMappingURL=login.css.map */
