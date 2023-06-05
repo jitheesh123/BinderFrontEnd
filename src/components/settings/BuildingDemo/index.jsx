@@ -15,7 +15,7 @@ const Index = props => {
     const { isLoading, setIsLoading } = props;
 
     const [state, setState] = useState({
-        paginationParams: {},
+        paginationParams: { perPage: 20 },
         params: { page: 1, limit: 20 }
     });
 
@@ -27,21 +27,21 @@ const Index = props => {
 
     useEffect(() => {
         const { paginationParams, params } = state;
-        setState({
-            paginationParams: {
-                ...paginationParams
-                // totalPages: Math.ceil(buildingData.count / params.limit)
-            }
-        });
-    }, [buildingData.count]);
+        if (buildingData.count && params?.limit) {
+            setState({
+                paginationParams: {
+                    ...paginationParams,
+                    totalPages: Math.ceil(buildingData.count / params?.limit)
+                }
+            });
+        }
+    }, [buildingData.count, state.params?.limit]);
 
     useEffect(() => {
         dispatch(getBuildingData(setIsLoading, state.params));
-    }, [state.params]);
+    }, [state.params, state.paginationParams]);
 
     BuildingTableConfig.data = buildingData.buildings;
-
-    console.log(state.paginationParams);
 
     const showAddForm = () => {
         const {
@@ -65,7 +65,6 @@ const Index = props => {
                 page: page.selected + 1
             }
         });
-        dispatch(getBuildingData(setIsLoading, state.params));
     };
 
     const handlePerPageChange = e => {
