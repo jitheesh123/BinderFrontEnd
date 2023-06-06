@@ -149,6 +149,7 @@ function App() {
                 <PrivateRoute exact path="/building/:section/:id" component={editBuilding} />
                 <PrivateRoute exact path="/building/:section/:id/:tab" component={building} />
                 <PrivateRoute exact path="/buildingDemo" component={BuildingDemo} />
+                <PrivateRoute exact path="/buildingDemo/:section/:id/:tab" component={BuildingDemo} />
                 <PrivateRoute exact path="/DemoBuildingAdd/add" component={AddBuildingForm} />
                 <PrivateRoute exact path="/sectors" component={Sectors} />
                 <PrivateRoute exact path="/sector/:section" component={addSector} />

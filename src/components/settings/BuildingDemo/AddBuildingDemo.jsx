@@ -79,7 +79,6 @@ const AddBuildingForm = props => {
         dispatch(getCampusesDropdown(params));
         setState(prevState => ({ ...prevState, campusIdList: campusDropdownData.data }));
     };
-    console.log(state);
     const addBuilding = async () => {
         if (state.name === "") {
             setState(prevState => ({
@@ -143,7 +142,6 @@ const AddBuildingForm = props => {
         ToastMsg(addBuildingData.message, "info");
         history.push("/buildingDemo");
     }
-
     return (
         <section className="cont-ara">
             <div className="fst">

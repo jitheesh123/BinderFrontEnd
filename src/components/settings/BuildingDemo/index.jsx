@@ -8,10 +8,14 @@ import Loader from "../../common/components/Loader";
 import TableTopheader from "../../common/components/TableTopHeader";
 import TopSlider from "../../common/components/TopSlider";
 import Pagination from "../../common/components/Pagination";
-
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import history from "../../../config/history";
+import ViewBuilding from "./ViewBuildingDemo";
+import actions from "./actions";
 const Index = props => {
     const dispatch = useDispatch();
 
+    const { section } = useParams();
     const { isLoading, setIsLoading } = props;
 
     const [state, setState] = useState({
@@ -21,6 +25,8 @@ const Index = props => {
 
     const { buildingData } = useSelector(state => state.buildingReducer);
 
+    BuildingTableConfig.data = buildingData.buildings;
+
     useEffect(() => {
         dispatch(getBuildingData(setIsLoading, state.params));
     }, []);
@@ -29,6 +35,7 @@ const Index = props => {
         const { paginationParams, params } = state;
         if (buildingData.count && params?.limit) {
             setState({
+                ...state,
                 paginationParams: {
                     ...paginationParams,
                     totalPages: Math.ceil(buildingData.count / params?.limit)
@@ -40,8 +47,6 @@ const Index = props => {
     useEffect(() => {
         dispatch(getBuildingData(setIsLoading, state.params));
     }, [state.params, state.paginationParams]);
-
-    BuildingTableConfig.data = buildingData.buildings;
 
     const showAddForm = () => {
         const {
@@ -56,6 +61,7 @@ const Index = props => {
     const handlePageClick = page => {
         const { paginationParams, params } = state;
         setState({
+            ...state,
             paginationParams: {
                 ...paginationParams,
                 currentPage: page.selected
@@ -69,6 +75,7 @@ const Index = props => {
 
     const handlePerPageChange = e => {
         setState({
+            ...state,
             params: {
                 ...state.params,
                 page: 1,
@@ -77,28 +84,59 @@ const Index = props => {
         });
     };
 
+    const showInfoPage = id => {
+        setState({
+            ...state,
+            selectedBuilding: id,
+            infoTabsData: [{ label: "Basic Details", path: `/buildingDemo/ViewDetails/${id}/basicdetails`, key: "basicdetails" }]
+        });
+        history.push(`/buildingDemo/ViewDetails/${id}/basicdetails`);
+    };
+
+    const getDataById = async id => {
+        const { building } = await dispatch(actions.getBuildingById(id));
+        return { success: true, building };
+    };
+
     return (
         <section className="cont-ara">
             <LoadingOverlay active={isLoading} spinner={<Loader />}>
-                <div className="list-area">
-                    <TopSlider />
-                    <div className="lst-bt-nav">
-                        <div className="table table-ara">
-                            <TableTopheader entity={"DemoBuilding"} addItem={showAddForm} />
-                            <div className="list-sec">
-                                <div className="table-section">
-                                    <CommonTable tableData={BuildingTableConfig} hasSort={true} hasActionColumn={false} />
+                {section === "ViewDetails" ? (
+                    <ViewBuilding
+                        keys={BuildingTableConfig.keys}
+                        config={BuildingTableConfig.config}
+                        infoTabsData={state.infoTabsData}
+                        showInfoPage={showInfoPage}
+                        getDataById={getDataById}
+                        // deleteItem={deleteItemConfirm}
+                        // showEditPage={this.showEditPage}
+                    />
+                ) : (
+                    <div className="list-area">
+                        <TopSlider />
+                        <div className="lst-bt-nav">
+                            <div className="table table-ara">
+                                <TableTopheader entity={"DemoBuilding"} addItem={showAddForm} />
+                                <div className="list-sec">
+                                    <div className="table-section">
+                                        <CommonTable
+                                            showInfoPage={showInfoPage}
+                                            tableData={BuildingTableConfig}
+                                            hasSort={true}
+                                            hasActionColumn={true}
+                                        />
+                                    </div>
                                 </div>
+                                <Pagination
+                                    paginationParams={state.paginationParams}
+                                    handlePageClick={handlePageClick}
+                                    handlePerPageChange={handlePerPageChange}
+                                    isRecordPerPage={true}
+                                />
                             </div>
-                            <Pagination
-                                paginationParams={state.paginationParams}
-                                handlePageClick={handlePageClick}
-                                handlePerPageChange={handlePerPageChange}
-                                isRecordPerPage={true}
-                            />
                         </div>
                     </div>
-                </div>
+                )}
             </LoadingOverlay>
         </section>
     );

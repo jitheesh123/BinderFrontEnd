@@ -359,7 +359,7 @@ class CommonView extends Component {
                                     className="btn"
                                     onClick={() => {
                                         history.push("/demo");
-                                        alert(`Item with this ID "${this.props.match.params.id}" has been deleted`);
+                                        deleteItem(this.props.match.params.id);
                                     }}
                                 >
                                     <img src="/images/delete-gry.svg" alt="" />
