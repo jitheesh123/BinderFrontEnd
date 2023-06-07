@@ -12,22 +12,36 @@ import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import history from "../../../config/history";
 import ViewBuilding from "./ViewBuildingDemo";
 import actions from "./actions";
+import ToastMsg from "../../common/ToastMessage";
+
+const InitialValues = {
+    paginationParams: { perPage: "20" },
+    params: { page: 1, limit: 20 }
+};
+
 const Index = props => {
     const dispatch = useDispatch();
 
-    const { section } = useParams();
+    const { section, id } = useParams();
+
     const { isLoading, setIsLoading } = props;
 
-    const [state, setState] = useState({
-        paginationParams: { perPage: 20 },
-        params: { page: 1, limit: 20 }
-    });
+    const [state, setState] = useState(InitialValues);
 
-    const { buildingData } = useSelector(state => state.buildingReducer);
+    const { buildingData } = useSelector(s => s.buildingReducer);
 
     BuildingTableConfig.data = buildingData.buildings;
 
+    const { addBuildingData } = useSelector(s => s.buildingReducer);
+
     useEffect(() => {
+        if (addBuildingData.success) {
+            ToastMsg(addBuildingData.message, "info");
+        }
+    }, [addBuildingData]);
+
+    useEffect(() => {
+        dispatch(actions.clearAddBuildingData());
         dispatch(getBuildingData(setIsLoading, state.params));
     }, []);
 
@@ -49,12 +63,6 @@ const Index = props => {
     }, [state.params, state.paginationParams]);
 
     const showAddForm = () => {
-        const {
-            match: {
-                params: { id }
-            },
-            history
-        } = props;
         history.push("/DemoBuildingAdd/add", { buildingId: id, prevPath: props.location.pathname || "/DemoBuildingAdd" });
     };
 
@@ -76,12 +84,21 @@ const Index = props => {
     const handlePerPageChange = e => {
         setState({
             ...state,
+            paginationParams: {
+                ...state.paginationParams,
+                perPage: e.target.value
+            },
             params: {
                 ...state.params,
                 page: 1,
                 limit: e.target.value
             }
         });
+    };
+
+    const deleteItem = id => {
+        dispatch(actions.deleteBuilding(id));
+        dispatch(getBuildingData(setIsLoading, state.params));
     };
 
     const showInfoPage = id => {
@@ -98,6 +115,11 @@ const Index = props => {
         return { success: true, building };
     };
 
+    const showEditPage = id => {
+        setState({ selectedBuilding: id });
+        history.push(`/DemoBuildingAdd/edit/${id}`);
+    };
+
     return (
         <section className="cont-ara">
             <LoadingOverlay active={isLoading} spinner={<Loader />}>
@@ -109,7 +131,6 @@ const Index = props => {
                         showInfoPage={showInfoPage}
                         getDataById={getDataById}
                         // deleteItem={deleteItemConfirm}
-                        // showEditPage={this.showEditPage}
                     />
                 ) : (
                     <div className="list-area">
@@ -120,10 +141,12 @@ const Index = props => {
                                 <div className="list-sec">
                                     <div className="table-section">
                                         <CommonTable
+                                            deleteItem={deleteItem}
                                             showInfoPage={showInfoPage}
                                             tableData={BuildingTableConfig}
                                             hasSort={true}
                                             hasActionColumn={true}
+                                            editItem={showEditPage}
                                         />
                                     </div>
                                 </div>

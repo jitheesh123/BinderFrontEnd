@@ -5,155 +5,142 @@ import actions from "./actions";
 import commonActions from "../actions";
 import ToastMsg from "../../common/ToastMessage";
 import history from "../../../config/history";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 
-const AddBuildingForm = props => {
+let InitialValues = {
+    consultancy_id: "",
+    client_id: "",
+    sector_id: "",
+    campus_id: "",
+
+    campusErrorMsg: false,
+    consultancyErrorMsg: false,
+    clientErrorMsg: false,
+    sectorErrorMsg: false,
+    nameErrorMsg: false,
+
+    name: "",
+    display_name: "",
+    zip_code: "",
+    city: "",
+    state: "",
+    year: "",
+    country: "",
+    ownership: "",
+    ownership_type: "",
+    use: "",
+    area: 0,
+    number: "",
+    enterprise_indexcost: 0,
+    enterprise_index: "",
+    manager: "",
+    street: "",
+    ministry: "",
+    description: "",
+    comments: ""
+};
+
+const AddBuildingForm = () => {
+    const dispatch = useDispatch();
+
+    const { id, type } = useParams();
+
     const { getConsultancyDropdown, getClientDropdown, getSectorDropdown, getCampusesDropdown } = commonActions;
 
-    const { consultancyDropdownData, clientDropdownData, sectorDropdownData, campusDropdownData } = useSelector(state => state.settingsCommonReducer);
+    const { consultancyDropdownData, clientDropdownData, sectorDropdownData, campusDropdownData } = useSelector(s => s.settingsCommonReducer);
+
+    const { addBuildingData, getBuildingByIdResponse } = useSelector(s => s.buildingReducer);
+
+    let { building } = getBuildingByIdResponse;
+
+    const [state, setState] = useState(InitialValues);
 
     useEffect(() => {
         dispatch(getConsultancyDropdown());
+        if (id) dispatch(actions.getBuildingById(id));
+        if (type === "add") setState(InitialValues);
     }, []);
 
-    const { addBuildingData } = useSelector(state => state.buildingReducer);
+    useEffect(() => {
+        if (type === "edit") {
+            if (state.consultancy_id) dispatch(getClientDropdown({ consultancy_id: building?.consultancy?.id }));
+            if (state.client_id) dispatch(getSectorDropdown({ client_id: building?.client?.id }));
+            if (state.campus_id) dispatch(getCampusesDropdown({ sector_id: building?.sector?.id }));
+        }
+    }, [state.client_id, state.sector_id, state.consultancy_id]);
 
-    const [state, setState] = useState({
-        consultancy_id: "",
-        client_id: "",
-        sector_id: "",
-        campus_id: "",
-
-        campusErrorMsg: false,
-        consultancyErrorMsg: false,
-        clientErrorMsg: false,
-        sectorErrorMsg: false,
-        nameErrorMsg: false,
-
-        name: "",
-        display_name: "",
-        zip_code: "",
-        city: "",
-        state: "",
-        year: "",
-        country: "",
-        ownership: "",
-        ownership_type: "",
-        use: "",
-        area: 0,
-        number: "",
-        cost: 0,
-        enterprise_index: "",
-        manager: "",
-        street: "",
-        ministry: "",
-        description: "",
-        comments: ""
-    });
-
-    const dispatch = useDispatch();
+    useEffect(() => {
+        if (id !== undefined) {
+            setState({
+                consultancy_id: building?.consultancy?.id || "",
+                client_id: building?.client?.id || "",
+                sector_id: building?.sector?.id || "",
+                campus_id: building?.campus?.id || "",
+                name: building?.name || "",
+                display_name: building?.display_name || "",
+                zip_code: building?.zip_code || "",
+                city: building?.city || "",
+                state: building?.state || "",
+                year: building?.year || "",
+                country: building?.country || "",
+                ownership: building?.ownership || "",
+                ownership_type: building?.ownership_type || "",
+                use: building?.use || "",
+                area: building?.area || "",
+                number: building?.number || "",
+                cost: building?.cost || "",
+                enterprise_index: building?.enterprise_index || "",
+                manager: building?.manager || "",
+                street: building?.street || "",
+                ministry: building?.ministry || "",
+                description: building?.description || "",
+                comments: building?.comments || ""
+            });
+        }
+    }, [getBuildingByIdResponse]);
 
     const selectConsultancyId = e => {
-        if (e?.target?.value !== undefined) setState({ ...state, consultancy_id: e?.target?.value, consultancyErrorMsg: false });
-
-        let params = {
-            consultancy_id: e?.target?.value
-        };
-        dispatch(getClientDropdown(params));
-        setState(prevState => ({ ...prevState, clientIdList: clientDropdownData.data }));
+        setState({ ...state, consultancy_id: e?.target?.value, consultancyErrorMsg: false });
+        dispatch(getClientDropdown({ consultancy_id: e?.target?.value }));
     };
 
     const selectClientId = e => {
         setState(prevState => ({ ...prevState, client_id: e?.target?.value, clientErrorMsg: false }));
-        let params = {
-            client_id: e?.target?.value
-        };
-        dispatch(getSectorDropdown(params));
-        setState(prevState => ({ ...prevState, sectorIdList: sectorDropdownData.data }));
+        dispatch(getSectorDropdown({ client_id: e?.target?.value }));
     };
 
     const selectSectorId = e => {
         setState(prevState => ({ ...prevState, sector_id: e?.target?.value, sectorErrorMsg: false }));
-        let params = {
-            sector_id: e?.target?.value
-        };
-        dispatch(getCampusesDropdown(params));
-        setState(prevState => ({ ...prevState, campusIdList: campusDropdownData.data }));
+        dispatch(getCampusesDropdown({ sector_id: e?.target?.value }));
     };
-    const addBuilding = async () => {
-        if (state.name === "") {
-            setState(prevState => ({
-                ...prevState,
-                nameErrorMsg: true
-            }));
-        }
-        if (state.consultancy_id === "") {
-            setState(prevState => ({
-                ...prevState,
-                consultancyErrorMsg: true
-            }));
-        }
-        if (state.client_id === "") {
-            setState(prevState => ({
-                ...prevState,
-                clientErrorMsg: true
-            }));
-        }
-        if (state.sector_id === "") {
-            setState(prevState => ({
-                ...prevState,
-                sectorErrorMsg: true
-            }));
-        }
-        if (state.campus_id === "") {
-            setState(prevState => ({
-                ...prevState,
-                campusErrorMsg: true
-            }));
-        }
+
+    const addBuilding = () => {
+        if (state.name === "") setState(prevState => ({ ...prevState, nameErrorMsg: true }));
+        if (state.consultancy_id === "") setState(prevState => ({ ...prevState, consultancyErrorMsg: true }));
+        if (state.client_id === "") setState(prevState => ({ ...prevState, clientErrorMsg: true }));
+        if (state.sector_id === "") setState(prevState => ({ ...prevState, sectorErrorMsg: true }));
+        if (state.campus_id === "") setState(prevState => ({ ...prevState, campusErrorMsg: true }));
         if (state.name !== "" && state.consultancy_id !== "" && state.client_id !== "" && state.sector_id !== "" && state.campus_id !== "") {
-            let rec_data = new FormData();
-            rec_data.append("building[name]", state.name);
-            rec_data.append("building[sector_id]", state.sector_id);
-            rec_data.append("building[comments]", state.comments);
-            rec_data.append("building[display_name]", state.display_name);
-            rec_data.append("building[consultancy_id]", state.consultancy_id);
-            rec_data.append("building[client_id]", state.client_id);
-            rec_data.append("building[campus_id]", state.campus_id);
-            rec_data.append("building[zip_code]", state.zip_code);
-            rec_data.append("building[city]", state.city);
-            rec_data.append("building[state]", state.state);
-            rec_data.append("building[year]", state.year);
-            rec_data.append("building[country]", state.country);
-            rec_data.append("building[ownership]", state.ownership);
-            rec_data.append("building[ownership_type]", state.ownership_type);
-            rec_data.append("building[use]", state.use);
-            rec_data.append("building[area]", state.area);
-            rec_data.append("building[number]", state.number);
-            rec_data.append("building[cost]", state.cost);
-            rec_data.append("building[enterprise_index]", state.enterprise_index);
-            rec_data.append("building[manager]", state.manager);
-            rec_data.append("building[street]", state.street);
-            rec_data.append("building[ministry]", state.ministry);
-            rec_data.append("building[description]", state.description);
-            dispatch(actions.addBuilding(rec_data));
+            if (type === "add") dispatch(actions.addBuilding(state));
+            if (type === "edit") dispatch(actions.editBuilding(state, id));
         }
     };
+
     if (addBuildingData.success) {
         ToastMsg(addBuildingData.message, "info");
         history.push("/buildingDemo");
     }
+
     return (
         <section className="cont-ara">
             <div className="fst">
                 <TopSlider />
-
                 <div className="dash-cont">
                     <div className="pub-ara six">
                         <div className="frm-ara">
                             <div className="top-ara">
-                                <h4>Add Building</h4>
+                                <h4>{type === "add" ? "Add" : "Edit"} Building</h4>
                             </div>
-
                             <div className="head">
                                 <h3>Basic Info</h3>
                             </div>
@@ -174,10 +161,12 @@ const AddBuildingForm = props => {
                                             <input
                                                 type="text"
                                                 id="text"
+                                                value={state.name}
                                                 onChange={e => {
                                                     setState({
                                                         ...state,
-                                                        name: e?.target?.value
+                                                        name: e?.target?.value,
+                                                        nameErrorMsg: false
                                                     });
                                                 }}
                                                 className="form-control"
@@ -307,6 +296,7 @@ const AddBuildingForm = props => {
                                                 Display Name
                                             </label>
                                             <input
+                                                value={state.display_name}
                                                 type="text"
                                                 id="text"
                                                 onChange={e => {
@@ -332,6 +322,7 @@ const AddBuildingForm = props => {
                                             </label>
                                             <input
                                                 type="text"
+                                                value={state.description}
                                                 id="text"
                                                 onChange={e => {
                                                     setState({ description: e.target.value });
@@ -353,6 +344,7 @@ const AddBuildingForm = props => {
                                             </label>
                                             <input
                                                 type="number"
+                                                value={state.number}
                                                 id="text"
                                                 onChange={e => {
                                                     setState({ number: e.target.value });
@@ -433,6 +425,7 @@ const AddBuildingForm = props => {
                                             </label>
                                             <input
                                                 type="number"
+                                                value={state.area}
                                                 id="text"
                                                 onChange={e => {
                                                     setState({ area: e.target.value });
@@ -455,6 +448,7 @@ const AddBuildingForm = props => {
                                             <input
                                                 type="number"
                                                 id="text"
+                                                value={state.cost}
                                                 onChange={e => {
                                                     setState({ cost: e.target.value });
                                                 }}
@@ -476,6 +470,7 @@ const AddBuildingForm = props => {
                                             <input
                                                 type="text"
                                                 id="text"
+                                                value={state.enterprise_index}
                                                 onChange={e => {
                                                     setState({ enterprise_index: e.target.value });
                                                 }}
@@ -497,6 +492,7 @@ const AddBuildingForm = props => {
                                             </label>
                                             <input
                                                 type="text"
+                                                value={state.ownership}
                                                 id="text"
                                                 onChange={e => {
                                                     setState({ ownership: e.target.value });
@@ -519,6 +515,7 @@ const AddBuildingForm = props => {
                                             </label>
                                             <input
                                                 type="text"
+                                                value={state.ownership_type}
                                                 id="text"
                                                 onChange={e => {
                                                     setState({ ownership_type: e.target.value });
@@ -542,6 +539,7 @@ const AddBuildingForm = props => {
                                             <input
                                                 type="text"
                                                 id="text"
+                                                value={state.use}
                                                 onChange={e => {
                                                     setState({ use: e.target.value });
                                                 }}
@@ -563,6 +561,7 @@ const AddBuildingForm = props => {
                                             <input
                                                 type="text"
                                                 id="text"
+                                                value={state.manager}
                                                 onChange={e => {
                                                     setState({ manager: e.target.value });
                                                 }}
@@ -584,6 +583,7 @@ const AddBuildingForm = props => {
                                             <input
                                                 type="number"
                                                 id="text"
+                                                value={state.year}
                                                 onChange={e => {
                                                     setState({ year: e.target.value });
                                                 }}
@@ -605,6 +605,7 @@ const AddBuildingForm = props => {
                                             <input
                                                 type="text"
                                                 id="text"
+                                                value={state.ministry}
                                                 onChange={e => {
                                                     setState({ ministry: e.target.value });
                                                 }}
@@ -632,6 +633,7 @@ const AddBuildingForm = props => {
                                             <input
                                                 type="text"
                                                 id="text"
+                                                value={state.street}
                                                 onChange={e => {
                                                     setState({ street: e.target.value });
                                                 }}
@@ -653,6 +655,7 @@ const AddBuildingForm = props => {
                                             <input
                                                 type="text"
                                                 id="text"
+                                                value={state.city}
                                                 onChange={e => {
                                                     setState({ city: e.target.value });
                                                 }}
@@ -674,6 +677,7 @@ const AddBuildingForm = props => {
                                             <input
                                                 type="text"
                                                 id="text"
+                                                value={state.state}
                                                 onChange={e => {
                                                     setState({ state: e.target.value });
                                                 }}
@@ -696,6 +700,7 @@ const AddBuildingForm = props => {
                                             <input
                                                 type="text"
                                                 id="text"
+                                                value={state.country}
                                                 onChange={e => {
                                                     setState({ country: e.target.value });
                                                 }}
@@ -718,6 +723,7 @@ const AddBuildingForm = props => {
                                             <input
                                                 type="number"
                                                 id="text"
+                                                value={state.zip_code}
                                                 onChange={e => {
                                                     setState({ zip_code: e.target.value });
                                                 }}
@@ -745,6 +751,7 @@ const AddBuildingForm = props => {
                                             <input
                                                 type="text"
                                                 id="text"
+                                                value={state.comments}
                                                 onChange={e => {
                                                     setState({ comments: e.target.value });
                                                 }}
