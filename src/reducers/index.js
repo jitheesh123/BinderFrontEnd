@@ -48,7 +48,8 @@ import floorReducer from "../components/settings/floor/reducers";
 import assetConditionReducer from "../components/settings/assetCondition/reducers";
 import assetReducer from "../components/settings/asset/reducers";
 import formTypeReducer from "../components/settings/formType/reducers";
-import documentReducer from "../components/settings/Documents/reducers"
+import documentReducer from "../components/settings/Documents/reducers";
+import BuildingDemoReducer from "../components/settings/BuildingDemo/reducers";
 
 const rootReducer = combineReducers({
     loginReducer,
@@ -99,7 +100,8 @@ const rootReducer = combineReducers({
     assetConditionReducer,
     assetReducer,
     formTypeReducer,
-    documentReducer
+    documentReducer,
+    BuildingDemoReducer
 });
 
 export default rootReducer;

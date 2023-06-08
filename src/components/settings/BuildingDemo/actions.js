@@ -17,7 +17,7 @@ export const getBuildingData = (setIsLoading, params) => {
                 dispatch({ type: actionTypes.GET_BUILDING_FAILURE, error: res.response && res.response.data });
             }
         } catch (e) {
-            dispatch({ type: actionTypes.GET_BUILDING_FAILURE, error: e.response && e.response.data });
+            dispatch({ type: actionTypes.COMMON_BUILDING_FAILURE, error: e.response && e.response.data });
         }
     };
 };
@@ -28,26 +28,26 @@ const addBuilding = params => {
             const res = await Service.addBuilding(params);
             if (res && res.status === 200) {
                 if (res.data) {
-                    dispatch({ type: actionTypes.ADD_BUILDING_SUCCESS, response: res.data });
-                    dispatch(clearAddBuildingData());
+                    dispatch({ type: actionTypes.COMMON_BUILDING_SUCCESS, response: res.data });
+                    dispatch(clearCommonResposeReduer());
                 } else {
-                    dispatch({ type: actionTypes.ADD_BUILDING_FAILURE, error: res.data });
+                    dispatch({ type: actionTypes.COMMON_BUILDING_FAILURE, error: res.data });
                 }
             } else {
-                dispatch({ type: actionTypes.ADD_BUILDING_FAILURE, error: res.response && res.response.data });
+                dispatch({ type: actionTypes.COMMON_BUILDING_FAILURE, error: res.response && res.response.data });
             }
         } catch (e) {
-            dispatch({ type: actionTypes.ADD_BUILDING_FAILURE, error: e.response && e.response.data });
+            dispatch({ type: actionTypes.COMMON_BUILDING_FAILURE, error: e.response && e.response.data });
         }
     };
 };
 
-const clearAddBuildingData = () => {
+const clearCommonResposeReduer = () => {
     return async dispatch => {
         try {
             dispatch({ type: actionTypes.CLEAR_ADDBUILDING_DATA });
         } catch (e) {
-            dispatch({ type: actionTypes.ADD_BUILDING_FAILURE, error: e.response && e.response.data });
+            dispatch({ type: actionTypes.COMMON_BUILDING_FAILURE, error: e.response && e.response.data });
         }
     };
 };
@@ -78,9 +78,9 @@ const editBuilding = (params, id) => {
             const res = await Service.editBuilding(params, id);
             if (res && res.status === 200) {
                 if (res.data) {
-                    dispatch({ type: actionTypes.ADD_BUILDING_SUCCESS, response: res.data });
+                    dispatch({ type: actionTypes.COMMON_BUILDING_SUCCESS, response: res.data });
                 } else {
-                    dispatch({ type: actionTypes.ADD_BUILDING_FAILURE, error: res.data });
+                    dispatch({ type: actionTypes.COMMON_BUILDING_FAILURE, error: res.data });
                 }
             } else {
                 dispatch({ type: actionTypes.EDIT_BUILDING_FAILURE, error: res.data });
@@ -98,22 +98,22 @@ const deleteBuilding = id => {
             const res = await Service.deleteBuilding(id);
             if (res && res.status === 200) {
                 if (res.data) {
-                    dispatch({ type: actionTypes.ADD_BUILDING_SUCCESS, response: res.data });
+                    dispatch({ type: actionTypes.COMMON_BUILDING_SUCCESS, response: res.data });
                 } else {
-                    dispatch({ type: actionTypes.ADD_BUILDING_FAILURE, error: res.data });
+                    dispatch({ type: actionTypes.COMMON_BUILDING_FAILURE, error: res.data });
                 }
             } else {
-                dispatch({ type: actionTypes.ADD_BUILDING_FAILURE, error: res.data });
+                dispatch({ type: actionTypes.COMMON_BUILDING_FAILURE, error: res.data });
             }
         } catch (e) {
-            dispatch({ type: actionTypes.ADD_BUILDING_FAILURE, error: e.response && e.response.data });
+            dispatch({ type: actionTypes.COMMON_BUILDING_FAILURE, error: e.response && e.response.data });
         }
     };
 };
 export default {
     getBuildingData,
     addBuilding,
-    clearAddBuildingData,
+    clearCommonResposeReduer,
     getBuildingById,
     editBuilding,
     deleteBuilding

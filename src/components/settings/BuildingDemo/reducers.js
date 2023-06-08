@@ -3,7 +3,7 @@ import * as actionTypes from "./constants";
 
 const initialState = {
     buildingData: {},
-    addBuildingData: {},
+    CommonResposeReduer: {},
     getBuildingByIdResponse: []
 };
 
@@ -23,22 +23,26 @@ export default (state = initialState, action) => {
                 ...state,
                 buildingData: { success: false, ...action.error }
             };
-        case actionTypes.ADD_BUILDING_SUCCESS:
+        case actionTypes.COMMON_BUILDING_SUCCESS:
             return {
                 ...state,
-                addBuildingData: { success: true, ...action.response }
+                CommonResposeReduer: { success: true, ...action.response }
             };
-        case actionTypes.ADD_BUILDING_FAILURE:
+        case actionTypes.COMMON_BUILDING_FAILURE:
             return {
                 ...state,
-                addBuildingData: { success: false, ...action.error }
+                CommonResposeReduer: { success: false, ...action.error }
+            };
+        case actionTypes.CLEAR_ADDBUILDING_DATA:
+            return {
+                ...state,
+                CommonResposeReduer: {}
             };
         case actionTypes.GET_BUILDING_BY_ID_REQUEST:
             return {
                 ...state
             };
         case actionTypes.GET_BUILDING_BY_ID_SUCCESS:
-            console.log(action.response);
             return {
                 ...state,
                 getBuildingByIdResponse: { success: true, ...action.response }

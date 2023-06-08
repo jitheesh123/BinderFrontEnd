@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import TopSlider from "../../common/components/TopSlider";
 import actions from "./actions";
 import commonActions from "../actions";
-import ToastMsg from "../../common/ToastMessage";
 import history from "../../../config/history";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 
@@ -49,7 +48,7 @@ const AddBuildingForm = () => {
 
     const { consultancyDropdownData, clientDropdownData, sectorDropdownData, campusDropdownData } = useSelector(s => s.settingsCommonReducer);
 
-    const { addBuildingData, getBuildingByIdResponse } = useSelector(s => s.buildingReducer);
+    const { CommonResposeReduer, getBuildingByIdResponse } = useSelector(s => s.BuildingDemoReducer);
 
     let { building } = getBuildingByIdResponse;
 
@@ -115,7 +114,8 @@ const AddBuildingForm = () => {
     };
 
     const addBuilding = () => {
-        if (state.name === "") setState(prevState => ({ ...prevState, nameErrorMsg: true }));
+        const nameRegex = /^[A-Za-z]{3,}$/;
+        if (!nameRegex.test(state.name)) setState(prevState => ({ ...prevState, nameErrorMsg: true }));
         if (state.consultancy_id === "") setState(prevState => ({ ...prevState, consultancyErrorMsg: true }));
         if (state.client_id === "") setState(prevState => ({ ...prevState, clientErrorMsg: true }));
         if (state.sector_id === "") setState(prevState => ({ ...prevState, sectorErrorMsg: true }));
@@ -126,8 +126,7 @@ const AddBuildingForm = () => {
         }
     };
 
-    if (addBuildingData.success) {
-        ToastMsg(addBuildingData.message, "info");
+    if (CommonResposeReduer.success) {
         history.push("/buildingDemo");
     }
 

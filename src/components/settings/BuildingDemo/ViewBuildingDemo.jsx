@@ -9,7 +9,6 @@ import ComingSoon from "../../common/components/ComingSoon";
 import Logbooks from "../buildingLogbook";
 import Activities from "../buildingActivity";
 import Users from "../../settings/buildingUsers/index";
-import buildingActivity from "../buildingActivity";
 import Floor from "../floor/index";
 import Assets from "../asset/index";
 import FormType from "../formType";

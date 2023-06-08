@@ -28,21 +28,19 @@ const Index = props => {
 
     const [state, setState] = useState(InitialValues);
 
-    const { buildingData } = useSelector(s => s.buildingReducer);
+    const { buildingData, CommonResposeReduer } = useSelector(s => s.BuildingDemoReducer);
 
     BuildingTableConfig.data = buildingData.buildings;
 
-    const { addBuildingData } = useSelector(s => s.buildingReducer);
-
     useEffect(() => {
-        if (addBuildingData.success) {
-            ToastMsg(addBuildingData.message, "info");
+        if (CommonResposeReduer.success) {
+            ToastMsg(CommonResposeReduer.message, "info");
+            dispatch(actions.clearCommonResposeReduer());
         }
-    }, [addBuildingData]);
+    }, [CommonResposeReduer]);
 
     useEffect(() => {
-        dispatch(actions.clearAddBuildingData());
-        dispatch(getBuildingData(setIsLoading, state.params));
+        dispatch(actions.clearCommonResposeReduer());
     }, []);
 
     useEffect(() => {
@@ -52,7 +50,8 @@ const Index = props => {
                 ...state,
                 paginationParams: {
                     ...paginationParams,
-                    totalPages: Math.ceil(buildingData.count / params?.limit)
+                    totalPages: Math.ceil(buildingData.count / params?.limit),
+                    totalCount: buildingData.count
                 }
             });
         }
@@ -63,7 +62,7 @@ const Index = props => {
     }, [state.params, state.paginationParams]);
 
     const showAddForm = () => {
-        history.push("/DemoBuildingAdd/add", { buildingId: id, prevPath: props.location.pathname || "/DemoBuildingAdd" });
+        history.push("/buildingDemo/add", { buildingId: id, prevPath: props.location.pathname || "/DemoBuildingAdd" });
     };
 
     const handlePageClick = page => {
@@ -98,6 +97,7 @@ const Index = props => {
 
     const deleteItem = id => {
         dispatch(actions.deleteBuilding(id));
+        history.push(`/buildingDemo`);
         dispatch(getBuildingData(setIsLoading, state.params));
     };
 
@@ -107,6 +107,7 @@ const Index = props => {
             selectedBuilding: id,
             infoTabsData: [{ label: "Basic Details", path: `/buildingDemo/ViewDetails/${id}/basicdetails`, key: "basicdetails" }]
         });
+
         history.push(`/buildingDemo/ViewDetails/${id}/basicdetails`);
     };
 
@@ -117,7 +118,18 @@ const Index = props => {
 
     const showEditPage = id => {
         setState({ selectedBuilding: id });
-        history.push(`/DemoBuildingAdd/edit/${id}`);
+        history.push(`/buildingDemo/edit/${id}`);
+    };
+
+    const handleGlobalSearch = search => {
+        const { params } = state;
+        setState({
+            params: {
+                ...params,
+                page: 1,
+                search
+            }
+        });
     };
 
     return (
@@ -130,14 +142,15 @@ const Index = props => {
                         infoTabsData={state.infoTabsData}
                         showInfoPage={showInfoPage}
                         getDataById={getDataById}
-                        // deleteItem={deleteItemConfirm}
+                        showEditPage={showEditPage}
+                        deleteItem={deleteItem}
                     />
                 ) : (
                     <div className="list-area">
                         <TopSlider />
                         <div className="lst-bt-nav">
                             <div className="table table-ara">
-                                <TableTopheader entity={"DemoBuilding"} addItem={showAddForm} />
+                                <TableTopheader handleGlobalSearch={handleGlobalSearch} entity={"Building-Demo"} addItem={showAddForm} />
                                 <div className="list-sec">
                                     <div className="table-section">
                                         <CommonTable
