@@ -4,8 +4,10 @@ export const getBuildingData = (setIsLoading, params) => {
     return async dispatch => {
         try {
             dispatch({ type: actionTypes.GET_BUILDING_REQUEST });
+
             setIsLoading(true);
             const res = await Service.getBuildingData(params);
+
             if (res && res.status === 200) {
                 setIsLoading(false);
                 if (res.data) {
@@ -21,7 +23,7 @@ export const getBuildingData = (setIsLoading, params) => {
         }
     };
 };
-const addBuilding = params => {
+export const addBuilding = params => {
     return async dispatch => {
         try {
             dispatch({ type: actionTypes.ADD_BUILDING_REQUEST });
@@ -42,7 +44,7 @@ const addBuilding = params => {
     };
 };
 
-const clearCommonResposeReduer = () => {
+export const clearCommonResposeReduer = () => {
     return async dispatch => {
         try {
             dispatch({ type: actionTypes.CLEAR_ADDBUILDING_DATA });
@@ -51,7 +53,7 @@ const clearCommonResposeReduer = () => {
         }
     };
 };
-const getBuildingById = id => {
+export const getBuildingById = id => {
     return async dispatch => {
         try {
             dispatch({ type: actionTypes.GET_BUILDING_BY_ID_REQUEST });
@@ -71,7 +73,7 @@ const getBuildingById = id => {
         }
     };
 };
-const editBuilding = (params, id) => {
+export const editBuilding = (params, id) => {
     return async dispatch => {
         try {
             dispatch({ type: actionTypes.EDIT_BUILDING_REQUEST });
@@ -91,7 +93,7 @@ const editBuilding = (params, id) => {
     };
 };
 
-const deleteBuilding = id => {
+export const deleteBuilding = (id, setIsLoading, params) => {
     return async dispatch => {
         try {
             dispatch({ type: actionTypes.DELETE_BUILDING_REQUEST });
@@ -99,6 +101,7 @@ const deleteBuilding = id => {
             if (res && res.status === 200) {
                 if (res.data) {
                     dispatch({ type: actionTypes.COMMON_BUILDING_SUCCESS, response: res.data });
+                    dispatch(getBuildingData(setIsLoading, params));
                 } else {
                     dispatch({ type: actionTypes.COMMON_BUILDING_FAILURE, error: res.data });
                 }

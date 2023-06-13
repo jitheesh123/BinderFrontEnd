@@ -1151,188 +1151,404 @@ export const BuildingTableConfig = {
             isVisible: true,
             label: "Building Code",
             class: "",
-            type: "string"
+            searchKey: "buildings.code",
+            type: "string",
+            hasWildCardSearch: true,
+            hasSort: true,
+            hasCommonSearch: false,
+            getListTable: "buildings",
+            commonSearchKey: "buildings",
+            commonSearchObjectKey: "code"
         },
         name: {
             isVisible: true,
             label: "Building Name",
             class: "",
-            type: "string"
+            searchKey: "buildings.name",
+            type: "string",
+            hasWildCardSearch: true,
+            hasSort: true,
+            hasCommonSearch: false,
+            getListTable: "buildings",
+            commonSearchKey: "buildings",
+            commonSearchObjectKey: "name"
         },
         display_name: {
             isVisible: true,
             label: "Display Name",
             class: "",
+            searchKey: "buildings.display_name",
             type: "string",
-            hasWildCardSearch: true
+            hasWildCardSearch: true,
+            hasSort: true,
+            hasCommonSearch: false,
+            getListTable: "buildings",
+            commonSearchKey: "buildings",
+            commonSearchObjectKey: "name"
         },
         building_type: {
             isVisible: true,
             label: "Building Type",
             class: "",
-            type: "object"
+            searchKey: "building_types.name",
+            type: "object",
+            hasWildCardSearch: true,
+            hasSort: true,
+            hasCommonSearch: true,
+            getListTable: "building_type",
+            commonSearchKey: "building_types",
+            commonSearchObjectKey: "name"
         },
         consultancy: {
             isVisible: true,
             label: "Consultancy",
             class: "",
-            type: "object"
+            searchKey: "consultancies.name",
+            type: "object",
+            hasWildCardSearch: true,
+            hasSort: true,
+            hasCommonSearch: false,
+            getListTable: "consultancies",
+            commonSearchKey: "consultancies",
+            commonSearchObjectKey: "name"
         },
         client: {
             isVisible: true,
             label: "Client",
             class: "client-wid",
-            type: "object"
+            searchKey: "clients.name",
+            type: "object",
+            hasWildCardSearch: true,
+            hasSort: true,
+            hasCommonSearch: false,
+            getListTable: "client",
+            commonSearchKey: "clients",
+            commonSearchObjectKey: "name"
         },
         sector: {
             isVisible: true,
             label: "Sector",
             class: "",
-            type: "object"
+            searchKey: "sectors.name",
+            type: "object",
+            hasWildCardSearch: true,
+            hasSort: true,
+            hasCommonSearch: false,
+            getListTable: "sector",
+            commonSearchKey: "sectors",
+            commonSearchObjectKey: "name"
         },
         campus: {
             isVisible: true,
             label: "Campus",
             class: "",
-            type: "object"
+            searchKey: "campus.name",
+            type: "object",
+            hasWildCardSearch: true,
+            hasSort: true,
+            hasCommonSearch: false,
+            getListTable: "campus",
+            commonSearchKey: "campuses",
+            commonSearchObjectKey: "name"
         },
         deeming_agency: {
             isVisible: true,
             label: "Deeming Agency",
             class: "",
-            type: "object"
+            searchKey: "deeming_agencies.name",
+            type: "object",
+            hasWildCardSearch: true,
+            hasSort: true,
+            hasCommonSearch: false,
+            getListTable: "deeming_agency",
+            commonSearchKey: "deeming_agencies",
+            commonSearchObjectKey: "name"
         },
         description: {
             isVisible: true,
             label: "Description",
             class: "",
-            type: "string"
+            searchKey: "buildings.description",
+            type: "string",
+            hasWildCardSearch: true,
+            hasSort: true,
+            hasCommonSearch: false,
+            getListTable: "buildings",
+            commonSearchKey: "buildings",
+            commonSearchObjectKey: "description"
         },
         number: {
             isVisible: true,
             label: "Building Number",
             class: "",
-            type: "string"
+            searchKey: "buildings.number",
+            type: "string",
+            hasWildCardSearch: true,
+            hasSort: true,
+            hasCommonSearch: false,
+            getListTable: "buildings",
+            commonSearchKey: "buildings",
+            commonSearchObjectKey: "number"
         },
         projects: {
             isVisible: true,
             label: "Associated Projects",
             class: "",
-            type: "string"
+            searchKey: "projects.name",
+            type: "string",
+            hasWildCardSearch: true,
+            hasSort: true,
+            hasCommonSearch: false,
+            getListTable: "projects",
+            commonSearchKey: "projects",
+            commonSearchObjectKey: "name"
         },
         users: {
             isVisible: true,
             label: "Consultancy Users",
             class: "cons-user",
-            type: "array"
+            searchKey: "users.name",
+            type: "array",
+            hasWildCardSearch: true,
+            hasSort: true,
+            hasCommonSearch: false,
+            getListTable: "assigned_users",
+            commonSearchKey: "users",
+            commonSearchObjectKey: "name"
         },
         client_users: {
             isVisible: true,
             label: "Client Users",
             class: "",
-            type: "array"
+            searchKey: "client_users.name",
+            type: "array",
+            hasWildCardSearch: true,
+            hasSort: true,
+            hasCommonSearch: false,
+            getListTable: "client_users",
+            commonSearchKey: "client_users",
+            commonSearchObjectKey: "name"
         },
         area: {
             isVisible: true,
             label: "Area (Sq Ft)",
             class: "",
-            type: "number"
+            searchKey: "buildings.area",
+            type: "number",
+            hasWildCardSearch: true,
+            hasSort: true,
+            hasCommonSearch: false,
+            getListTable: "buildings",
+            commonSearchKey: "buildings",
+            commonSearchObjectKey: "area"
         },
         cost: {
             isVisible: true,
             label: "Cost",
             class: "",
-            type: "money"
+            searchKey: "buildings.cost",
+            type: "money",
+            hasWildCardSearch: true,
+            hasSort: true,
+            hasCommonSearch: false,
+            getListTable: "buildings",
+            commonSearchKey: "buildings",
+            commonSearchObjectKey: "cost"
         },
         enterprise_index: {
             isVisible: true,
             label: "Enterprise Index",
             class: "",
-            type: "string"
+            searchKey: "buildings.enterprise_index",
+            type: "string",
+            hasWildCardSearch: true,
+            hasSort: true,
+            hasCommonSearch: false,
+            getListTable: "buildings",
+            commonSearchKey: "buildings",
+            commonSearchObjectKey: "enterprise_index"
         },
         ownership: {
             isVisible: true,
             label: "Ownership",
             class: "clent",
-            type: "string"
+            searchKey: "buildings.ownership",
+            type: "string",
+            hasWildCardSearch: true,
+            hasSort: true,
+            hasCommonSearch: false,
+            getListTable: "buildings",
+            commonSearchKey: "buildings",
+            commonSearchObjectKey: "ownership"
         },
         ownership_type: {
             isVisible: true,
             label: "Ownership Type",
             class: "",
-            type: "string"
+            searchKey: "buildings.ownership_type",
+            type: "string",
+            hasWildCardSearch: true,
+            hasSort: true,
+            hasCommonSearch: false,
+            getListTable: "buildings",
+            commonSearchKey: "buildings",
+            commonSearchObjectKey: "ownership_type"
         },
         use: {
             isVisible: true,
             label: "Use",
             class: "",
-            type: "string"
+            searchKey: "buildings.use",
+            type: "string",
+            hasWildCardSearch: true,
+            hasSort: true,
+            hasCommonSearch: false,
+            getListTable: "buildings",
+            commonSearchKey: "buildings",
+            commonSearchObjectKey: "use"
         },
         manager: {
             isVisible: true,
             label: "Manager",
             class: "",
-            type: "string"
+            searchKey: "buildings.manager",
+            type: "string",
+            hasWildCardSearch: true,
+            hasSort: true,
+            hasCommonSearch: false,
+            getListTable: "buildings",
+            commonSearchKey: "buildings",
+            commonSearchObjectKey: "manager"
         },
         year: {
             isVisible: true,
             label: "Year Built",
             class: "",
-            type: "string"
+            searchKey: "buildings.year",
+            type: "string",
+            hasWildCardSearch: true,
+            hasSort: true,
+            hasCommonSearch: false,
+            getListTable: "buildings",
+            commonSearchKey: "buildings",
+            commonSearchObjectKey: "year"
         },
         ministry: {
             isVisible: true,
             label: "Ministry",
             class: "",
-            type: "string"
+            searchKey: "buildings.ministry",
+            type: "string",
+            hasWildCardSearch: true,
+            hasSort: true,
+            hasCommonSearch: false,
+            getListTable: "buildings",
+            commonSearchKey: "buildings",
+            commonSearchObjectKey: "ministry"
         },
         street: {
             isVisible: true,
             label: "Street",
             class: "",
-            type: "string"
+            searchKey: "buildings.street",
+            type: "string",
+            hasWildCardSearch: true,
+            hasSort: true,
+            hasCommonSearch: false,
+            getListTable: "buildings",
+            commonSearchKey: "buildings",
+            commonSearchObjectKey: "street"
         },
         city: {
             isVisible: true,
             label: "City",
             class: "",
-            type: "string"
+            searchKey: "buildings.city",
+            type: "string",
+            hasWildCardSearch: true,
+            hasSort: true,
+            hasCommonSearch: false,
+            getListTable: "buildings",
+            commonSearchKey: "buildings",
+            commonSearchObjectKey: "city"
         },
         state: {
             isVisible: true,
             label: "State",
             class: "",
-            type: "string"
+            searchKey: "buildings.state",
+            type: "string",
+            hasWildCardSearch: true,
+            hasSort: true,
+            hasCommonSearch: false,
+            getListTable: "buildings",
+            commonSearchKey: "buildings",
+            commonSearchObjectKey: "state"
         },
         zip_code: {
             isVisible: true,
             label: "ZipCode",
             class: "",
-            type: "string"
+            searchKey: "buildings.zip_code",
+            type: "string",
+            hasWildCardSearch: true,
+            hasSort: true,
+            hasCommonSearch: false,
+            getListTable: "buildings",
+            commonSearchKey: "buildings",
+            commonSearchObjectKey: "zip_code"
         },
         country: {
             isVisible: true,
             label: "Country",
             class: "",
-            type: "string"
+            searchKey: "buildings.country",
+            type: "string",
+            hasWildCardSearch: true,
+            hasSort: true,
+            hasCommonSearch: false,
+            getListTable: "buildings",
+            commonSearchKey: "buildings",
+            commonSearchObjectKey: "country"
         },
         comments: {
             isVisible: true,
             label: "Comments",
             class: "",
-            type: "string"
+            searchKey: "buildings.comments",
+            type: "string",
+            hasWildCardSearch: true,
+            hasSort: true,
+            hasCommonSearch: false,
+            getListTable: "buildings",
+            commonSearchKey: "buildings",
+            commonSearchObjectKey: "comments"
         },
         created_at: {
             isVisible: true,
             label: "Created At",
             class: "",
-            type: "date"
+            searchKey: "buildings.created_at",
+            type: "date",
+            hasWildCardSearch: true,
+            hasSort: true,
+            hasCommonSearch: false,
+            getListTable: "buildings",
+            commonSearchKey: "buildings",
+            commonSearchObjectKey: "created_at"
         },
         updated_at: {
             isVisible: true,
             label: "Updated At",
             class: "",
-            type: "date"
+            searchKey: "buildings.updated_at",
+            type: "date",
+            hasWildCardSearch: true,
+            hasSort: true,
+            hasCommonSearch: false,
+            getListTable: "buildings",
+            commonSearchKey: "buildings",
+            commonSearchObjectKey: "updated_at"
         }
     },
     data: []

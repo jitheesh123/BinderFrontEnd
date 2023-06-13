@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CommonTable from "../../common/components/CommonTable";
-import { getBuildingData } from "./actions";
 import { BuildingTableConfig } from "../../../config/tableConfig";
 import LoadingOverlay from "react-loading-overlay";
 import Loader from "../../common/components/Loader";
@@ -11,12 +10,15 @@ import Pagination from "../../common/components/Pagination";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import history from "../../../config/history";
 import ViewBuilding from "./ViewBuildingDemo";
-import actions from "./actions";
+import { clearCommonResposeReduer, getBuildingData, deleteBuilding, getBuildingById } from "./actions";
 import ToastMsg from "../../common/ToastMessage";
+import AddBuildingForm from "./AddBuildingDemo";
 
 const InitialValues = {
     paginationParams: { perPage: "20" },
-    params: { page: 1, limit: 20 }
+    params: { page: 1, limit: 20 },
+    GetData: false,
+    showWildCardFilter: false
 };
 
 const Index = props => {
@@ -35,12 +37,16 @@ const Index = props => {
     useEffect(() => {
         if (CommonResposeReduer.success) {
             ToastMsg(CommonResposeReduer.message, "info");
-            dispatch(actions.clearCommonResposeReduer());
+            dispatch(clearCommonResposeReduer());
+        }
+        if (CommonResposeReduer.success === false) {
+            ToastMsg(CommonResposeReduer.message, "danger");
+            dispatch(clearCommonResposeReduer());
         }
     }, [CommonResposeReduer]);
 
     useEffect(() => {
-        dispatch(actions.clearCommonResposeReduer());
+        dispatch(clearCommonResposeReduer());
     }, []);
 
     useEffect(() => {
@@ -48,57 +54,41 @@ const Index = props => {
         if (buildingData.count && params?.limit) {
             setState({
                 ...state,
-                paginationParams: {
-                    ...paginationParams,
-                    totalPages: Math.ceil(buildingData.count / params?.limit),
-                    totalCount: buildingData.count
-                }
+                paginationParams: { ...paginationParams, totalPages: Math.ceil(buildingData.count / params?.limit), totalCount: buildingData.count }
             });
         }
     }, [buildingData.count, state.params?.limit]);
 
     useEffect(() => {
         dispatch(getBuildingData(setIsLoading, state.params));
-    }, [state.params, state.paginationParams]);
+    }, [state.GetData]);
 
     const showAddForm = () => {
         history.push("/buildingDemo/add", { buildingId: id, prevPath: props.location.pathname || "/DemoBuildingAdd" });
     };
 
     const handlePageClick = page => {
-        const { paginationParams, params } = state;
+        const { paginationParams, params, GetData } = state;
         setState({
             ...state,
-            paginationParams: {
-                ...paginationParams,
-                currentPage: page.selected
-            },
-            params: {
-                ...params,
-                page: page.selected + 1
-            }
+            paginationParams: { ...paginationParams, currentPage: page.selected },
+            params: { ...params, page: page.selected + 1 },
+            GetData: !GetData
         });
     };
 
     const handlePerPageChange = e => {
         setState({
             ...state,
-            paginationParams: {
-                ...state.paginationParams,
-                perPage: e.target.value
-            },
-            params: {
-                ...state.params,
-                page: 1,
-                limit: e.target.value
-            }
+            paginationParams: { ...state.paginationParams, perPage: e.target.value },
+            params: { ...state.params, page: 1, limit: e.target.value },
+            GetData: !state.GetData
         });
     };
 
     const deleteItem = id => {
-        dispatch(actions.deleteBuilding(id));
+        dispatch(deleteBuilding(id, setIsLoading, state.params));
         history.push(`/buildingDemo`);
-        dispatch(getBuildingData(setIsLoading, state.params));
     };
 
     const showInfoPage = id => {
@@ -112,30 +102,69 @@ const Index = props => {
     };
 
     const getDataById = async id => {
-        const { building } = await dispatch(actions.getBuildingById(id));
+        const { building } = await dispatch(getBuildingById(id));
         return { success: true, building };
     };
 
     const showEditPage = id => {
-        setState({ selectedBuilding: id });
+        setState({ ...state, selectedBuilding: id });
         history.push(`/buildingDemo/edit/${id}`);
     };
 
     const handleGlobalSearch = search => {
-        const { params } = state;
+        const { params, GetData } = state;
+        setState({ ...state, params: { ...params, page: 1, search, GetData: !GetData } });
+    };
+
+    const updateTableSortFilters = searchKey => {
+        if (state.params.order) {
+            setState({
+                ...state,
+                params: { ...state.params, order: { ...state.params.order, [searchKey]: state.params.order[searchKey] === "desc" ? "asc" : "desc" } },
+                GetData: !state.GetData
+            });
+        } else {
+            setState({ ...state, params: { ...state.params, order: { [searchKey]: "asc" } }, GetData: !state.GetData });
+        }
+    };
+
+    const resetSort = () => {
+        setState({ ...state, params: { ...state.params, order: null }, GetData: !state.GetData });
+    };
+
+    const resetAllFilters = () => {
         setState({
-            params: {
-                ...params,
-                page: 1,
-                search
-            }
+            ...state,
+            paginationParams: { ...state.paginationParams, totalPages: 0, perPage: 40, currentPage: 0, totalCount: 0 },
+            params: { ...state.params, limit: 40, page: 1, search: "", filters: null, list: null, order: null },
+            tableData: { ...state.tableData, config: BuildingTableConfig.config },
+            showWildCardFilter: !state.showWildCardFilter,
+            GetData: !state.GetData
         });
     };
 
+    const toggleFilter = () => {
+        setState({ ...state, showWildCardFilter: !state.showWildCardFilter });
+    };
+
+    const updateWildCardFilter = newFilter => {
+        setState({ ...state, params: { ...state.params, offset: 0, filters: newFilter, list: null, search: "" }, GetData: !state.GetData });
+    };
+
+    const resetWildCardFilter = () => {
+        setState({
+            ...state,
+            params: { ...state.params, filters: null, list: null, search: "" },
+            showWildCardFilter: !state.showWildCardFilter,
+            GetData: !state.GetData
+        });
+    };
     return (
         <section className="cont-ara">
             <LoadingOverlay active={isLoading} spinner={<Loader />}>
-                {section === "ViewDetails" ? (
+                {section === "add" || section === "edit" ? (
+                    <AddBuildingForm setState={setState} state={state} />
+                ) : section === "ViewDetails" ? (
                     <ViewBuilding
                         keys={BuildingTableConfig.keys}
                         config={BuildingTableConfig.config}
@@ -150,16 +179,31 @@ const Index = props => {
                         <TopSlider />
                         <div className="lst-bt-nav">
                             <div className="table table-ara">
-                                <TableTopheader handleGlobalSearch={handleGlobalSearch} entity={"Building-Demo"} addItem={showAddForm} />
+                                <TableTopheader
+                                    resetAllFilters={resetAllFilters}
+                                    hasExport={false}
+                                    tableParams={state.params}
+                                    handleGlobalSearch={handleGlobalSearch}
+                                    entity={"Building-Demo"}
+                                    addItem={showAddForm}
+                                    resetSort={resetSort}
+                                    toggleFilter={toggleFilter}
+                                    showWildCardFilter={state.showWildCardFilter}
+                                    resetWildCardFilter={resetWildCardFilter}
+                                />
                                 <div className="list-sec">
                                     <div className="table-section">
                                         <CommonTable
+                                            updateWildCardFilter={updateWildCardFilter}
+                                            showWildCardFilter={state.showWildCardFilter}
+                                            updateTableSortFilters={updateTableSortFilters}
                                             deleteItem={deleteItem}
                                             showInfoPage={showInfoPage}
                                             tableData={BuildingTableConfig}
                                             hasSort={true}
                                             hasActionColumn={true}
                                             editItem={showEditPage}
+                                            tableParams={state.params}
                                         />
                                     </div>
                                 </div>

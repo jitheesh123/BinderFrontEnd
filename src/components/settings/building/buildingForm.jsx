@@ -1076,16 +1076,17 @@ class editBuilding extends Component {
                                 <button className="btn btn-cncl-back mr-2" onClick={() => this.cancelForm()}>
                                     <i className="material-icons tic"> close</i>Cancel
                                 </button>
-                                {selectedBuilding ? (
-                                    <button className="btn btn-create" onClick={() => this.editBuilding()}>
-                                        <i className="material-icons tic"> check</i> Update Building
-                                    </button>
-                                ) : (
-                                    <button className="btn btn-create" onClick={() => this.addBuilding()}>
-                                        <i className="material-icons tic"> check</i> Add Building
-                                    </button>
-                                )}
                             </div>
+
+                            {selectedBuilding ? (
+                                <button className="btn btn-create" onClick={() => this.editBuilding()}>
+                                    <i className="material-icons tic"> check</i> Update Building
+                                </button>
+                            ) : (
+                                <button className="btn btn-create w-25" onClick={() => this.addBuilding()}>
+                                    <i className="material-icons tic"> check</i> Add Building
+                                </button>
+                            )}
                         </div>
                     </div>
                 </div>
