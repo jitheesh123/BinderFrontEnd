@@ -355,13 +355,7 @@ class CommonView extends Component {
                                 </button>
                             ) : null}
                             {hasDelete ? (
-                                <button
-                                    className="btn"
-                                    onClick={() => {
-                                        history.push("/demo");
-                                        deleteItem(this.props.match.params.id);
-                                    }}
-                                >
+                                <button className="btn" onClick={() => deleteItem(this.props.match.params.id)}>
                                     <img src="/images/delete-gry.svg" alt="" />
                                     Delete
                                 </button>

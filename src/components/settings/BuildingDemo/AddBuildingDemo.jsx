@@ -57,29 +57,11 @@ const AddBuildingForm = props => {
     useEffect(() => {
         if (id !== undefined) {
             setState({
+                ...building,
                 consultancy_id: building?.consultancy?.id || "",
                 client_id: building?.client?.id || "",
                 sector_id: building?.sector?.id || "",
-                campus_id: building?.campus?.id || "",
-                name: building?.name || "",
-                display_name: building?.display_name || "",
-                zip_code: building?.zip_code || "",
-                city: building?.city || "",
-                state: building?.state || "",
-                year: building?.year || "",
-                country: building?.country || "",
-                ownership: building?.ownership || "",
-                ownership_section: building?.ownership_section || "",
-                use: building?.use || "",
-                area: building?.area || "",
-                number: building?.number || "",
-                cost: building?.cost || "",
-                enterprise_index: building?.enterprise_index || "",
-                manager: building?.manager || "",
-                street: building?.street || "",
-                ministry: building?.ministry || "",
-                description: building?.description || "",
-                comments: building?.comments || ""
+                campus_id: building?.campus?.id || ""
             });
         }
         if (section === "edit") {

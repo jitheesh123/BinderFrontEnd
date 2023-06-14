@@ -4,10 +4,8 @@ export const getBuildingData = (setIsLoading, params) => {
     return async dispatch => {
         try {
             dispatch({ type: actionTypes.GET_BUILDING_REQUEST });
-
             setIsLoading(true);
             const res = await Service.getBuildingData(params);
-
             if (res && res.status === 200) {
                 setIsLoading(false);
                 if (res.data) {

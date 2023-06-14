@@ -13,12 +13,15 @@ import ViewBuilding from "./ViewBuildingDemo";
 import { clearCommonResposeReduer, getBuildingData, deleteBuilding, getBuildingById } from "./actions";
 import ToastMsg from "../../common/ToastMessage";
 import AddBuildingForm from "./AddBuildingDemo";
+import Portal from "../../common/components/Portal";
+import ConfirmationModal from "../../common/components/ConfirmationModal";
 
 const InitialValues = {
     paginationParams: { perPage: "20" },
     params: { page: 1, limit: 20 },
     GetData: false,
-    showWildCardFilter: false
+    showWildCardFilter: false,
+    showConfirmaionModal: false
 };
 
 const Index = props => {
@@ -26,9 +29,11 @@ const Index = props => {
 
     const { section, id } = useParams();
 
-    const { isLoading, setIsLoading } = props;
+    const { isLoading, setIsLoading, location } = props;
 
     const [state, setState] = useState(InitialValues);
+
+    const { paginationParams, params, GetData, showWildCardFilter, tableData, infoTabsData, showConfirmaionModal, selectedBuilding } = state;
 
     const { buildingData, CommonResposeReduer } = useSelector(s => s.BuildingDemoReducer);
 
@@ -50,25 +55,25 @@ const Index = props => {
     }, []);
 
     useEffect(() => {
-        const { paginationParams, params } = state;
         if (buildingData.count && params?.limit) {
             setState({
                 ...state,
-                paginationParams: { ...paginationParams, totalPages: Math.ceil(buildingData.count / params?.limit), totalCount: buildingData.count }
+                paginationParams: {
+                    ...paginationParams,
+                    totalPages: Math.ceil(buildingData.count / params?.limit),
+                    totalCount: buildingData.count
+                }
             });
         }
-    }, [buildingData.count, state.params?.limit]);
+    }, [buildingData.count, params?.limit]);
 
     useEffect(() => {
-        dispatch(getBuildingData(setIsLoading, state.params));
-    }, [state.GetData]);
+        dispatch(getBuildingData(setIsLoading, params));
+    }, [GetData]);
 
-    const showAddForm = () => {
-        history.push("/buildingDemo/add", { buildingId: id, prevPath: props.location.pathname || "/DemoBuildingAdd" });
-    };
+    const showAddForm = () => history.push("/buildingDemo/add", { buildingId: id, prevPath: location.pathname || "/DemoBuildingAdd" });
 
     const handlePageClick = page => {
-        const { paginationParams, params, GetData } = state;
         setState({
             ...state,
             paginationParams: { ...paginationParams, currentPage: page.selected },
@@ -80,15 +85,24 @@ const Index = props => {
     const handlePerPageChange = e => {
         setState({
             ...state,
-            paginationParams: { ...state.paginationParams, perPage: e.target.value },
-            params: { ...state.params, page: 1, limit: e.target.value },
-            GetData: !state.GetData
+            paginationParams: { ...paginationParams, perPage: e.target.value },
+            params: { ...params, page: 1, limit: e.target.value },
+            GetData: !GetData
         });
     };
 
     const deleteItem = id => {
-        dispatch(deleteBuilding(id, setIsLoading, state.params));
-        history.push(`/buildingDemo`);
+        setState({ ...state, selectedBuilding: id, showConfirmaionModal: true });
+    };
+
+    const confirmDelete = () => {
+        dispatch(deleteBuilding(selectedBuilding, setIsLoading, params));
+        setState({ ...state, showConfirmaionModal: false });
+        history.push("/buildingDemo");
+    };
+
+    const OnCancel = () => {
+        setState({ ...state, showConfirmaionModal: false });
     };
 
     const showInfoPage = id => {
@@ -111,54 +125,48 @@ const Index = props => {
         history.push(`/buildingDemo/edit/${id}`);
     };
 
-    const handleGlobalSearch = search => {
-        const { params, GetData } = state;
-        setState({ ...state, params: { ...params, page: 1, search, GetData: !GetData } });
-    };
+    const handleGlobalSearch = search => setState({ ...state, params: { ...params, page: 1, search }, GetData: !GetData });
 
     const updateTableSortFilters = searchKey => {
-        if (state.params.order) {
+        if (params.order) {
             setState({
                 ...state,
-                params: { ...state.params, order: { ...state.params.order, [searchKey]: state.params.order[searchKey] === "desc" ? "asc" : "desc" } },
-                GetData: !state.GetData
+                params: { ...params, order: { ...params.order, [searchKey]: params.order[searchKey] === "desc" ? "asc" : "desc" } },
+                GetData: !GetData
             });
         } else {
-            setState({ ...state, params: { ...state.params, order: { [searchKey]: "asc" } }, GetData: !state.GetData });
+            setState({ ...state, params: { ...params, order: { [searchKey]: "asc" } }, GetData: !GetData });
         }
     };
 
-    const resetSort = () => {
-        setState({ ...state, params: { ...state.params, order: null }, GetData: !state.GetData });
-    };
+    const resetSort = () => setState({ ...state, params: { ...params, order: null }, GetData: !GetData });
 
     const resetAllFilters = () => {
         setState({
             ...state,
-            paginationParams: { ...state.paginationParams, totalPages: 0, perPage: 40, currentPage: 0, totalCount: 0 },
-            params: { ...state.params, limit: 40, page: 1, search: "", filters: null, list: null, order: null },
-            tableData: { ...state.tableData, config: BuildingTableConfig.config },
-            showWildCardFilter: !state.showWildCardFilter,
-            GetData: !state.GetData
+            paginationParams: { ...paginationParams, totalPages: 0, perPage: 40, currentPage: 0, totalCount: 0 },
+            params: { ...params, limit: 40, page: 1, search: "", filters: null, list: null, order: null },
+            tableData: { ...tableData, config: BuildingTableConfig.config },
+            showWildCardFilter: false,
+            GetData: !GetData
         });
     };
 
-    const toggleFilter = () => {
-        setState({ ...state, showWildCardFilter: !state.showWildCardFilter });
-    };
+    const toggleFilter = () => setState({ ...state, showWildCardFilter: !showWildCardFilter });
 
     const updateWildCardFilter = newFilter => {
-        setState({ ...state, params: { ...state.params, offset: 0, filters: newFilter, list: null, search: "" }, GetData: !state.GetData });
+        setState({ ...state, params: { ...params, offset: 0, filters: newFilter, list: null, search: "" }, GetData: !GetData });
     };
 
     const resetWildCardFilter = () => {
         setState({
             ...state,
-            params: { ...state.params, filters: null, list: null, search: "" },
-            showWildCardFilter: !state.showWildCardFilter,
-            GetData: !state.GetData
+            params: { ...params, filters: null, list: null, search: "" },
+            showWildCardFilter: false,
+            GetData: !GetData
         });
     };
+
     return (
         <section className="cont-ara">
             <LoadingOverlay active={isLoading} spinner={<Loader />}>
@@ -168,7 +176,7 @@ const Index = props => {
                     <ViewBuilding
                         keys={BuildingTableConfig.keys}
                         config={BuildingTableConfig.config}
-                        infoTabsData={state.infoTabsData}
+                        infoTabsData={infoTabsData}
                         showInfoPage={showInfoPage}
                         getDataById={getDataById}
                         showEditPage={showEditPage}
@@ -182,20 +190,20 @@ const Index = props => {
                                 <TableTopheader
                                     resetAllFilters={resetAllFilters}
                                     hasExport={false}
-                                    tableParams={state.params}
+                                    tableParams={params}
                                     handleGlobalSearch={handleGlobalSearch}
                                     entity={"Building-Demo"}
                                     addItem={showAddForm}
                                     resetSort={resetSort}
                                     toggleFilter={toggleFilter}
-                                    showWildCardFilter={state.showWildCardFilter}
+                                    showWildCardFilter={showWildCardFilter}
                                     resetWildCardFilter={resetWildCardFilter}
                                 />
                                 <div className="list-sec">
                                     <div className="table-section">
                                         <CommonTable
                                             updateWildCardFilter={updateWildCardFilter}
-                                            showWildCardFilter={state.showWildCardFilter}
+                                            showWildCardFilter={showWildCardFilter}
                                             updateTableSortFilters={updateTableSortFilters}
                                             deleteItem={deleteItem}
                                             showInfoPage={showInfoPage}
@@ -203,12 +211,12 @@ const Index = props => {
                                             hasSort={true}
                                             hasActionColumn={true}
                                             editItem={showEditPage}
-                                            tableParams={state.params}
+                                            tableParams={params}
                                         />
                                     </div>
                                 </div>
                                 <Pagination
-                                    paginationParams={state.paginationParams}
+                                    paginationParams={paginationParams}
                                     handlePageClick={handlePageClick}
                                     handlePerPageChange={handlePerPageChange}
                                     isRecordPerPage={true}
@@ -217,6 +225,18 @@ const Index = props => {
                         </div>
                     </div>
                 )}
+                {showConfirmaionModal ? (
+                    <Portal
+                        body={
+                            <ConfirmationModal
+                                onCancel={OnCancel}
+                                onOk={confirmDelete}
+                                heading={"Do you want to delete ?"}
+                                paragraph={"This action cannot be reverted, are you sure that you need to delete this item ?"}
+                            />
+                        }
+                    />
+                ) : null}
             </LoadingOverlay>
         </section>
     );
