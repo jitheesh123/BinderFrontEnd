@@ -1866,6 +1866,7 @@ aside.navbar-collapse.show {
         border: none;
         color: #103BB5;
         font-weight: 600; }
+         .frm .itm .itm-cnt .form-control::placeholder {color: #103BB5 ;}
       .frm .itm .itm-cnt span.material-icons {
         position: absolute;
         right: 13px;

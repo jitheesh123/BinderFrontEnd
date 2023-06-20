@@ -1,5 +1,6 @@
 import * as actionTypes from "./constants";
 import * as Service from "./services";
+
 export const getBuildingData = (setIsLoading, params) => {
     return async dispatch => {
         try {
@@ -21,6 +22,7 @@ export const getBuildingData = (setIsLoading, params) => {
         }
     };
 };
+
 export const addBuilding = params => {
     return async dispatch => {
         try {
@@ -51,6 +53,13 @@ export const clearCommonResposeReduer = () => {
         }
     };
 };
+
+export const clearDropdown = () => {
+    return async dispatch => {
+        dispatch({ type: "CLEAR_DROPDOWN" });
+    };
+};
+
 export const getBuildingById = id => {
     return async dispatch => {
         try {
@@ -71,6 +80,7 @@ export const getBuildingById = id => {
         }
     };
 };
+
 export const editBuilding = (params, id) => {
     return async dispatch => {
         try {
@@ -111,6 +121,7 @@ export const deleteBuilding = (id, setIsLoading, params) => {
         }
     };
 };
+
 export default {
     getBuildingData,
     addBuilding,

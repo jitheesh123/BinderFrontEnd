@@ -24,12 +24,10 @@ const InitialValues = {
     showConfirmaionModal: false
 };
 
-const Index = props => {
+const Index = ({ isLoading, setIsLoading, location }) => {
     const dispatch = useDispatch();
 
     const { section, id } = useParams();
-
-    const { isLoading, setIsLoading, location } = props;
 
     const [state, setState] = useState(InitialValues);
 
@@ -56,16 +54,10 @@ const Index = props => {
 
     useEffect(() => {
         if (buildingData.count && params?.limit) {
-            setState({
-                ...state,
-                paginationParams: {
-                    ...paginationParams,
-                    totalPages: Math.ceil(buildingData.count / params?.limit),
-                    totalCount: buildingData.count
-                }
-            });
+            let totalPages = Math.ceil(buildingData.count / params?.limit);
+            setState({ ...state, paginationParams: { ...paginationParams, totalPages, totalCount: buildingData?.count } });
         }
-    }, [buildingData.count, params?.limit]);
+    }, [buildingData?.count, params?.limit]);
 
     useEffect(() => {
         dispatch(getBuildingData(setIsLoading, params));
@@ -91,9 +83,7 @@ const Index = props => {
         });
     };
 
-    const deleteItem = id => {
-        setState({ ...state, selectedBuilding: id, showConfirmaionModal: true });
-    };
+    const deleteItem = id => setState({ ...state, selectedBuilding: id, showConfirmaionModal: true });
 
     const confirmDelete = () => {
         dispatch(deleteBuilding(selectedBuilding, setIsLoading, params));
@@ -101,23 +91,16 @@ const Index = props => {
         history.push("/buildingDemo");
     };
 
-    const OnCancel = () => {
-        setState({ ...state, showConfirmaionModal: false });
-    };
+    const OnCancel = () => setState({ ...state, showConfirmaionModal: false });
 
     const showInfoPage = id => {
-        setState({
-            ...state,
-            selectedBuilding: id,
-            infoTabsData: [{ label: "Basic Details", path: `/buildingDemo/ViewDetails/${id}/basicdetails`, key: "basicdetails" }]
-        });
-
-        history.push(`/buildingDemo/ViewDetails/${id}/basicdetails`);
+        let path = `/buildingDemo/ViewDetails/${id}/basicdetails`;
+        setState({ ...state, selectedBuilding: id, infoTabsData: [{ label: "Basic Details", path, key: "basicdetails" }] });
+        history.push(path);
     };
 
     const getDataById = async id => {
-        const { building } = await dispatch(getBuildingById(id));
-        return { success: true, building };
+        return { success: true, ...(await dispatch(getBuildingById(id))) };
     };
 
     const showEditPage = id => {
@@ -128,15 +111,13 @@ const Index = props => {
     const handleGlobalSearch = search => setState({ ...state, params: { ...params, page: 1, search }, GetData: !GetData });
 
     const updateTableSortFilters = searchKey => {
-        if (params.order) {
+        if (params.order)
             setState({
                 ...state,
                 params: { ...params, order: { ...params.order, [searchKey]: params.order[searchKey] === "desc" ? "asc" : "desc" } },
                 GetData: !GetData
             });
-        } else {
-            setState({ ...state, params: { ...params, order: { [searchKey]: "asc" } }, GetData: !GetData });
-        }
+        else setState({ ...state, params: { ...params, order: { [searchKey]: "asc" } }, GetData: !GetData });
     };
 
     const resetSort = () => setState({ ...state, params: { ...params, order: null }, GetData: !GetData });
@@ -144,8 +125,8 @@ const Index = props => {
     const resetAllFilters = () => {
         setState({
             ...state,
-            paginationParams: { ...paginationParams, totalPages: 0, perPage: 40, currentPage: 0, totalCount: 0 },
-            params: { ...params, limit: 40, page: 1, search: "", filters: null, list: null, order: null },
+            paginationParams: { ...paginationParams, perPage: 20 },
+            params: { ...params, limit: 20, page: 1, search: "", filters: null, list: null, order: null },
             tableData: { ...tableData, config: BuildingTableConfig.config },
             showWildCardFilter: false,
             GetData: !GetData
@@ -159,12 +140,7 @@ const Index = props => {
     };
 
     const resetWildCardFilter = () => {
-        setState({
-            ...state,
-            params: { ...params, filters: null, list: null, search: "" },
-            showWildCardFilter: false,
-            GetData: !GetData
-        });
+        setState({ ...state, params: { ...params, filters: null, list: null, search: "" }, showWildCardFilter: false, GetData: !GetData });
     };
 
     return (

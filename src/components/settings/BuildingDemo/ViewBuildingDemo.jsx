@@ -4,16 +4,14 @@ import CommonView from "../../common/components/CommonView";
 import CommonViewTabs from "../../common/components/CommonViewTabs";
 import { useParams } from "react-router-dom/cjs/react-router-dom";
 
-const ViewBuilding = props => {
+const ViewBuilding = ({ keys, config, infoTabsData, deleteItem, showEditPage, getDataById, showInfoPage }) => {
     const [state, setState] = useState({ basicDetails: {} });
 
     let { id, section } = useParams();
 
-    const { keys, config, infoTabsData, deleteItem, showEditPage, getDataById, showInfoPage } = props;
-
     const refreshinfoDetails = async () => {
-        let buildingData = await getDataById(id);
-        if (buildingData && buildingData.success) setState({ ...state, basicDetails: buildingData?.building });
+        let { success, building } = await getDataById(id);
+        if (building && success) setState({ ...state, basicDetails: building });
     };
 
     useEffect(() => {

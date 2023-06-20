@@ -61,8 +61,8 @@ class viewBuilding extends Component {
         await this.refreshinfoDetails();
     };
 
-    componentDidUpdate = async (prevProps, prevState) => {
-        if (prevProps.match.params.id !== this.props.match.params.id) {
+    componentDidUpdate = async (prevProps, prevState) => {     
+         if (prevProps.match.params.id !== this.props.match.params.id) {
             this.props.showInfoPage(this.props.match.params.id);
             await this.refreshinfoDetails();
         }
@@ -227,7 +227,103 @@ class viewBuilding extends Component {
                             hasActivityAssign={hasActivityAssign}
                             hasUserAssign={hasUserAssign}
                         />
-                    ) : null}
+                    ) : tab === "assignedlogbooks" ? (
+                        <div className="infoPageContent">
+                            <div className="frm-ara cmon-ara">
+                                <div className="head">
+                                    <h3>&nbsp;</h3>
+                                    {hasLogbookAssign ? (
+                                        <div className="btn-sec">
+                                            <button className="btn" onClick={() => updateScheduling(id)}>
+                                                <img src="/images/binder-icon.svg" alt="" />
+                                                Assign Logbooks
+                                            </button>
+                                        </div>
+                                    ) : null}
+                                </div>
+                                <Logbooks />
+                            </div>
+                        </div>
+                    ) : tab === "assignedactivities" ? (
+                        <div className="infoPageContent">
+                            <div className="frm-ara cmon-ara">
+                                <div className="head">
+                                    <h3>&nbsp;</h3>
+                                    {hasActivityAssign ? (
+                                        <div className="btn-sec">
+                                            <button className="btn" onClick={() => updateAssignActivity(id)}>
+                                                <img src="/images/binder-icon.svg" alt="" />
+                                                Assign Activities
+                                            </button>
+                                        </div>
+                                    ) : null}
+                                </div>
+                                <Activities />
+                            </div>
+                        </div>
+                    ) : tab === "assignedconsultancy_users" ? (
+                        <div className="infoPageContent">
+                            <div className="frm-ara cmon-ara">
+                                <div className="head">
+                                    <h3>&nbsp;</h3>
+                                    {hasUserAssign ? (
+                                        <div className="btn-sec">
+                                            <button className="btn" onClick={() => updateUserAssignment(id)}>
+                                                <img src="/images/binder-icon.svg" alt="" />
+                                                Assign Users
+                                            </button>
+                                        </div>
+                                    ) : null}
+                                </div>
+                                <Users role="consultancy_user" />
+                            </div>
+                        </div>
+                    ) : tab === "assignedclient_users" ? (
+                        <div className="infoPageContent">
+                            <div className="frm-ara cmon-ara">
+                                <div className="head">
+                                    <h3>&nbsp;</h3>
+                                    {hasUserAssign ? (
+                                        <div className="btn-sec">
+                                            <button className="btn" onClick={() => updateUserAssignment(id)}>
+                                                <img src="/images/binder-icon.svg" alt="" />
+                                                Assign Users
+                                            </button>
+                                        </div>
+                                    ) : null}
+                                </div>
+                                <Users role="client_user" />
+                            </div>
+                        </div>
+                    ) : tab === "floors" ? (
+                        <div className="infoPageContent showAddButton">
+                            <div className="frm-ara cmon-ara">
+                                <div className="head">
+                                    <h3>&nbsp;</h3>
+                                </div>
+                                <Floor buildingId={id} setIsLoading={setIsLoading} />
+                            </div>
+                        </div>
+                    ) : tab === "assets" ? (
+                        <div className="infoPageContent showAddButton">
+                            <div className="frm-ara cmon-ara">
+                                <div className="head">
+                                    <h3>&nbsp;</h3>
+                                </div>
+                                <Assets buildingId={id} setIsLoading={setIsLoading} />
+                            </div>
+                        </div>
+                    ) : tab === "formsettings" ? (
+                        <div className="infoPageContent">
+                            <div className="frm-ara cmon-ara">
+                                <FormType path="building_event_forms" building_id={id} setIsLoading={setIsLoading} />
+                            </div>
+                        </div>
+                    ) : (
+                        <div className="infoPageContent">
+                            <ComingSoon />
+                        </div>
+                    )}
                 </div>
                 {this.renderConfirmationModalLog()}
             </React.Fragment>

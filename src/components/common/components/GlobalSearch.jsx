@@ -3,7 +3,7 @@ import { withRouter } from "react-router-dom";
 
 class GlobalSearch extends Component {
     state = {
-        inputValue: this.props.globalSearchKey
+        inputValue: this.props.globalSearchKey || ""
     };
 
     componentDidUpdate = async (prevProps, prevState) => {

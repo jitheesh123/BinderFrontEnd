@@ -29,6 +29,13 @@ const conmmonRedRes = (state = initialState, action) => {
                 ...state,
                 consultancyDropdownData: { success: true, ...action.response }
             };
+        case "CLEAR_DROPDOWN":
+            return {
+                ...state,
+                clientDropdownData: [],
+                sectorDropdownData: [],
+                campusDropdownData: []
+            };
         case actionTypes.GET_CONSULTANCY_DROPDOWN_FAILURE:
             return {
                 ...state,

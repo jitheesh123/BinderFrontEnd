@@ -25,7 +25,6 @@ import UpdateUserAssignmentModal from "../../common/components/UpdateUserBuildin
 class index extends Component {
     constructor(props) {
         super(props);
-
         this.state = {
             buildingDataList: [],
             tableData: buildingTableData,
@@ -49,6 +48,7 @@ class index extends Component {
             showWildCardFilter: false
         };
     }
+
     componentDidMount = async () => {
         await this.setState({
             tableData: {
@@ -685,7 +685,7 @@ class index extends Component {
                     </div>
                 </section>
             );
-
+            
         return (
             <React.Fragment>
                 <section className="cont-ara">

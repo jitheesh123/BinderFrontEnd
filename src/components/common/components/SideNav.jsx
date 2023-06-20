@@ -14,9 +14,9 @@ class SideNav extends Component {
                 <div className={`collapse ${expandedMenus.includes(menuData.key) ? "show" : ""}`}>
                     <ul className="view">
                         {menuData.subMenus && menuData.subMenus.length
-                            ? menuData.subMenus.map(subMenuItem =>
+                            ? menuData.subMenus.map((subMenuItem, key) =>
                                   subMenuItem.permission ? (
-                                      <li>
+                                      <li key={key}>
                                           <a
                                               onClick={
                                                   subMenuItem.url ? () => pageChange(subMenuItem.url) : () => setExpandedSubMenu(subMenuItem.key)
@@ -46,9 +46,9 @@ class SideNav extends Component {
                 <aside className={`sidenav navbar-collapse fixed collapse ${expandSideMenu ? "" : "show"}`} id="navbarSupportedContent">
                     <ul className="navbar">
                         {sideNavData && sideNavData.length
-                            ? sideNavData.map(navItem =>
+                            ? sideNavData.map((navItem, key) =>
                                   navItem.permission ? (
-                                      <li className="nav-item">
+                                      <li className="nav-item" key={key}>
                                           <a
                                               className="nav-link"
                                               onClick={navItem.url ? () => pageChange(navItem.url) : () => setExpandedSubMenu(navItem.key)}

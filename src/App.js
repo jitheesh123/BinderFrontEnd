@@ -114,10 +114,8 @@ import Documents from "./components/settings/Documents";
 import documentForm from "./components/settings/Documents/userForm";
 import globalReport from "./components/globalReport";
 import demo from "./components/settings/Demo/index";
-import demoView from "./components/settings/Demo/demoView";
 import DemoForm from "./components/settings/Demo/demoForm";
 import BuildingDemo from "./components/settings/BuildingDemo/index";
-import AddBuildingForm from "./components/settings/BuildingDemo/AddBuildingDemo";
 function App() {
     return (
         <Router history={history}>
