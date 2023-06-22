@@ -685,7 +685,7 @@ class index extends Component {
                     </div>
                 </section>
             );
-            
+
         return (
             <React.Fragment>
                 <section className="cont-ara">

@@ -3,7 +3,8 @@ import * as actionTypes from "./constants";
 const initialState = {
     buildingData: {},
     CommonResposeReduer: {},
-    getBuildingByIdResponse: []
+    getBuildingByIdResponse: [],
+    getAllBuildingLogResponse: []
 };
 
 export default (state = initialState, action) => {
@@ -50,6 +51,21 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 getBuildingByIdResponse: { success: false, ...action.error }
+            };
+        case actionTypes.GET_ALL_BUILDING_LOG_SUCCESS:
+            return {
+                ...state,
+                getAllBuildingLogResponse: { success: true, ...action.response }
+            };
+        case actionTypes.DELETE_BUILDING_LOG_SUCCESS:
+            return {
+                ...state,
+                CommonResposeReduer: { success: true, ...action.response }
+            };
+        case actionTypes.RESTORE_BUILDING_LOG_SUCCESS:
+            return {
+                ...state,
+                CommonResposeReduer: { success: true, ...action.response }
             };
         default:
             return {

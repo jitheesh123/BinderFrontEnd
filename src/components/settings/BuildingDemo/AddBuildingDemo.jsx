@@ -79,17 +79,17 @@ const AddBuildingForm = props => {
     }, [getBuildingByIdResponse]);
 
     const selectConsultancyId = e => {
-        setState({ ...state, consultancy_id: e?.target?.value, consultancyErrorMsg: false });
+        setState({ ...state, consultancy_id: e?.target?.value, consultancyErrorMsg: false, client_id: "" });
         dispatch(getClientDropdown({ consultancy_id: e?.target?.value }));
     };
 
     const selectClientId = e => {
-        setState({ ...state, client_id: e?.target?.value, clientErrorMsg: false });
+        setState({ ...state, client_id: e?.target?.value, clientErrorMsg: false, sector_id: "" });
         dispatch(getSectorDropdown({ client_id: e?.target?.value }));
     };
 
     const selectSectorId = e => {
-        setState({ ...state, sector_id: e?.target?.value, sectorErrorMsg: false });
+        setState({ ...state, sector_id: e?.target?.value, sectorErrorMsg: false, campus_id: "" });
         dispatch(getCampusesDropdown({ sector_id: e?.target?.value }));
     };
 
@@ -125,7 +125,6 @@ const AddBuildingForm = props => {
                     </div>
                     <div className="frm ">
                         <Input
-                            count="01"
                             label="Building Name"
                             value={state.name}
                             onChange={e => setState({ ...state, name: e?.target?.value, nameErrorMsg: false })}
@@ -134,7 +133,6 @@ const AddBuildingForm = props => {
                             error={state.nameErrorMsg}
                         />
                         <InputSelect
-                            count="02"
                             label="Consultancy"
                             value={state.consultancy_id}
                             onChange={e => selectConsultancyId(e)}
@@ -142,7 +140,6 @@ const AddBuildingForm = props => {
                             options={consultancyDropdownData?.data}
                         />
                         <InputSelect
-                            count="03"
                             label="Client"
                             value={state.client_id}
                             onChange={e => selectClientId(e)}
@@ -150,7 +147,6 @@ const AddBuildingForm = props => {
                             options={clientDropdownData?.data}
                         />
                         <InputSelect
-                            count="04"
                             label="Sector"
                             value={state.sector_id}
                             onChange={e => selectSectorId(e)}
@@ -158,7 +154,6 @@ const AddBuildingForm = props => {
                             options={sectorDropdownData?.data}
                         />
                         <InputSelect
-                            count="05"
                             label="Campus"
                             value={state.campus_id}
                             onChange={e => setState({ ...state, campus_id: e?.target?.value, campusErrorMsg: false })}
@@ -166,7 +161,6 @@ const AddBuildingForm = props => {
                             options={campusDropdownData?.data}
                         />
                         <Input
-                            count="06"
                             label="Display Name"
                             value={state.display_name}
                             onChange={e => setState({ ...state, display_name: e?.target?.value })}
@@ -174,7 +168,6 @@ const AddBuildingForm = props => {
                             section="text"
                         />
                         <Input
-                            count="07"
                             label="Description"
                             value={state.description}
                             onChange={e => setState({ ...state, description: e?.target?.value })}
@@ -182,7 +175,6 @@ const AddBuildingForm = props => {
                             section="text"
                         />
                         <Input
-                            count="08"
                             label="Building Number"
                             value={state.number}
                             onChange={e => setState({ ...state, number: e?.target?.value })}
@@ -201,7 +193,6 @@ const AddBuildingForm = props => {
                             option={["Buildig Number", "Buildig Number"]}
                         />
                         <Input
-                            count="10"
                             label=" Client Users"
                             placeHolder="Enter Client Users"
                             section="text"
@@ -216,6 +207,7 @@ const AddBuildingForm = props => {
                     <div className="frm">
                         <Input
                             label="Area (Sq)"
+                            type="number"
                             placeHolder="Enter Area (Sq) "
                             value={state.area}
                             onChange={e => setState({ ...state, area: e?.target?.value })}
@@ -224,6 +216,7 @@ const AddBuildingForm = props => {
                         <Input
                             label="Cost"
                             placeHolder="Enter Cost"
+                            type="number"
                             value={state.cost}
                             onChange={e => setState({ ...state, cost: e?.target?.value })}
                             section="text"
@@ -231,6 +224,7 @@ const AddBuildingForm = props => {
                         <Input
                             label="Enterprise Index"
                             placeHolder="Enter Enterprise Index"
+                            type="number"
                             value={state.enterprise_index}
                             onChange={e => setState({ ...state, enterprise_index: e?.target?.value })}
                             section="text"
@@ -268,6 +262,7 @@ const AddBuildingForm = props => {
                             placeHolder="Enter Year"
                             value={state.year}
                             onChange={e => setState({ ...state, year: e?.target?.value })}
+                            type="number"
                             section="text"
                         />
                         <Input
@@ -314,6 +309,7 @@ const AddBuildingForm = props => {
                             label="Zip Code"
                             placeHolder="Enter Zip Code"
                             value={state.zip_code}
+                            type="number"
                             onChange={e => setState({ ...state, zip_code: e?.target?.value })}
                             section="text"
                         />

@@ -1,4 +1,4 @@
-export const Input = ({ label, value, onChange, placeHolder, section, error, name, option }) => {
+export const Input = ({ label, value, onChange, placeHolder, section, error, name, option, type }) => {
     return (
         <div className="itm">
             <div className="itm-cnt">
@@ -16,9 +16,10 @@ export const Input = ({ label, value, onChange, placeHolder, section, error, nam
                         placeholder={placeHolder}
                         list={name}
                         name={name}
+                        type={type}
                     />
                     {name && option ? (
-                        <datalist id={name}>{option?.length && option?.map((item, idex) => <option key={idex} value={item} />)}</datalist>
+                        <datalist id={name}>{option?.length && option?.map((item, index) => <option key={index} value={item} />)}</datalist>
                     ) : null}
                 </div>
             </div>
@@ -36,8 +37,8 @@ export const InputSelect = ({ label, value, onChange, error, options }) => {
                     <select style={{ backgroundColor: "white" }} className="form-control select" value={value} onChange={onChange}>
                         <option value="">Select</option>
                         {options?.length &&
-                            options?.map((item, idex) => (
-                                <option key={idex} value={item.id}>
+                            options?.map((item, index) => (
+                                <option key={index} value={item.id}>
                                     {item.name}
                                 </option>
                             ))}

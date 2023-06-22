@@ -223,7 +223,7 @@ class CommonView extends Component {
                     <h3>Basic Info</h3>
                     {showTopButtons && (
                         <div className="btn-sec">
-                            {section === "buildinginfo" || section === "consultancyinfo" || section === "clientinfo" ? (
+                            {section === "buildinginfo" || section === "consultancyinfo" || section === "clientinfo" || section === "ViewDetails" ? (
                                 hasLogbookAssign ? (
                                     <button className="btn" onClick={() => updateScheduling(this.props.match.params.id)}>
                                         <img src={`/images/${"binder-icon.svg"}`} alt="" />
@@ -231,7 +231,7 @@ class CommonView extends Component {
                                     </button>
                                 ) : null
                             ) : null}
-                            {section === "buildinginfo" || section === "consultancyinfo" || section === "clientinfo" ? (
+                            {section === "buildinginfo" || section === "consultancyinfo" || section === "clientinfo" || section === "ViewDetails" ? (
                                 hasActivityAssign ? (
                                     <button className="btn" onClick={() => updateActivityScheduling(this.props.match.params.id)}>
                                         <img src={`/images/${"binder-icon.svg"}`} alt="" />
@@ -255,7 +255,7 @@ class CommonView extends Component {
                                     </button>
                                 ) : null
                             ) : null}
-                            {section === "sectorinfo" || section === "campusinfo" || section === "buildinginfo" ? (
+                            {section === "sectorinfo" || section === "campusinfo" || section === "buildinginfo" || section === "ViewDetails" ? (
                                 hasUserAssign ? (
                                     <button className="btn" onClick={() => updateUserAssignment(this.props.match.params.id)}>
                                         <img src={`/images/${"add-icon.svg"}`} alt="" />

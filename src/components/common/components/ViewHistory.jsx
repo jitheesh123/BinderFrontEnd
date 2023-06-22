@@ -127,7 +127,7 @@ class ViewHistory extends Component {
                                         {logData.data && logData.data.length ? (
                                             <>
                                                 {logData.data.map((item, i) => (
-                                                    <tr>
+                                                    <tr key={i}>
                                                         <td className="img-sq-box">
                                                             <img src="/images/table-dot-white.svg" />
                                                         </td>
@@ -138,7 +138,7 @@ class ViewHistory extends Component {
                                                                         <li key={index}>
                                                                             <b>
                                                                                 <Highlighter
-                                                                                    searchWords={[historyParams.search ? historyParams.search : ""]}
+                                                                                    searchWords={[historyParams?.search ? historyParams?.search : ""]}
                                                                                     textToHighlight={item.user}
                                                                                     autoEscape={true}
                                                                                 />
@@ -146,7 +146,7 @@ class ViewHistory extends Component {
                                                                             {item.event === "restore" ? "restored" : "changed"} the field{" "}
                                                                             <b>
                                                                                 <Highlighter
-                                                                                    searchWords={[historyParams.search ? historyParams.search : ""]}
+                                                                                    searchWords={[historyParams?.search ? historyParams?.search : ""]}
                                                                                     textToHighlight={data[0].replace("_id", "").replace(/_/g, " ")}
                                                                                     autoEscape={true}
                                                                                 />
@@ -154,7 +154,7 @@ class ViewHistory extends Component {
                                                                             from{" "}
                                                                             <b className="customWindow">
                                                                                 <Highlighter
-                                                                                    searchWords={[historyParams.search ? historyParams.search : ""]}
+                                                                                    searchWords={[historyParams?.search ? historyParams?.search : ""]}
                                                                                     textToHighlight={
                                                                                         typeof data[1][0] === "number"
                                                                                             ? this.thousands_separators(
@@ -168,7 +168,7 @@ class ViewHistory extends Component {
                                                                             to{" "}
                                                                             <b className="customWindow">
                                                                                 <Highlighter
-                                                                                    searchWords={[historyParams.search ? historyParams.search : ""]}
+                                                                                    searchWords={[historyParams?.search ? historyParams?.search : ""]}
                                                                                     textToHighlight={
                                                                                         typeof data[1][1] === "number"
                                                                                             ? this.thousands_separators(
