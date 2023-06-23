@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import history from "../../../config/history";
 import CommonView from "../../common/components/CommonView";
 import CommonViewTabs from "../../common/components/CommonViewTabs";
 import { useParams } from "react-router-dom/cjs/react-router-dom";

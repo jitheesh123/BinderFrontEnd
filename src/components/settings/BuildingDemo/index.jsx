@@ -25,7 +25,7 @@ import AddBuildingForm from "./AddBuildingDemo";
 import Portal from "../../common/components/Portal";
 import ViewModal from "../../common/components/ViewModal";
 import ConfirmationModal from "../../common/components/ConfirmationModal";
-import AssignLogBooksDemo from "./AssignLogBooksDemo";
+import AssignLogBooksDemo from "../buildingType/AssignLogBooksDemo";
 import AssignUsersDemo from "./AssignUsersDemo";
 import AssignActivitiesDemo from "./AssignActivitiesDemo";
 
@@ -355,6 +355,9 @@ const Index = ({ isLoading, setIsLoading, location }) => {
                                             hasActionColumn={true}
                                             editItem={showEditPage}
                                             tableParams={params}
+                                            hasActionCalendar={true}
+                                            hasActionActivityScheduling={true}
+                                            // hasActionUserAssign={true}
                                         />
                                     </div>
                                 </div>
@@ -414,7 +417,13 @@ const Index = ({ isLoading, setIsLoading, location }) => {
                 ) : null}
                 {ShowUpdateUserAssignmentModal ? (
                     <Portal
-                        body={<AssignUsersDemo cancel={() => setState({ ...state, ShowUpdateUserAssignmentModal: false })} />}
+                        body={
+                            <AssignUsersDemo
+                                building_id={id}
+                                onCancel={() => setState({ ...state, ShowUpdateUserAssignmentModal: false })}
+                                onOk={deleteItem}
+                            />
+                        }
                         onCancel={() => setState({ ...state, ShowUpdateUserAssignmentModal: false })}
                     />
                 ) : null}
