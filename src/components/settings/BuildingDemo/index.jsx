@@ -25,7 +25,7 @@ import AddBuildingForm from "./AddBuildingDemo";
 import Portal from "../../common/components/Portal";
 import ViewModal from "../../common/components/ViewModal";
 import ConfirmationModal from "../../common/components/ConfirmationModal";
-import AssignLogBooksDemo from "../buildingType/AssignLogBooksDemo";
+import AssignLogBooksDemo from "./AssignLogBooksDemo";
 import AssignUsersDemo from "./AssignUsersDemo";
 import AssignActivitiesDemo from "./AssignActivitiesDemo";
 
@@ -221,10 +221,7 @@ const Index = ({ isLoading, setIsLoading, location }) => {
 
     const handleHideColumn = keyItem => {
         if (keyItem !== "selectAll" && keyItem !== "deselectAll")
-            BuildingTableConfig.config[keyItem] = {
-                ...BuildingTableConfig.config[keyItem],
-                isVisible: !BuildingTableConfig.config[keyItem].isVisible
-            };
+            BuildingTableConfig.config[keyItem].isVisible = !BuildingTableConfig.config[keyItem].isVisible;
         else
             BuildingTableConfig.keys.map(item => {
                 if (keyItem === "selectAll") BuildingTableConfig.config[item].isVisible = true;
@@ -289,7 +286,6 @@ const Index = ({ isLoading, setIsLoading, location }) => {
             ShowUpdateBuildingActivitiesAndScheduleModal: !ShowUpdateBuildingActivitiesAndScheduleModal
         });
     };
-
     return (
         <section className="cont-ara">
             <LoadingOverlay active={isLoading} spinner={<Loader />}>
@@ -427,9 +423,15 @@ const Index = ({ isLoading, setIsLoading, location }) => {
                         onCancel={() => setState({ ...state, ShowUpdateUserAssignmentModal: false })}
                     />
                 ) : null}
+
                 {ShowUpdateBuildingActivitiesAndScheduleModal ? (
                     <Portal
-                        body={<AssignActivitiesDemo cancel={() => setState({ ...state, ShowUpdateBuildingActivitiesAndScheduleModal: false })} />}
+                        body={
+                            <AssignActivitiesDemo
+                                building_id={id}
+                                onCancel={() => setState({ ...state, ShowUpdateBuildingActivitiesAndScheduleModal: false })}
+                            />
+                        }
                         onCancel={() => setState({ ...state, ShowUpdateBuildingActivitiesAndScheduleModal: false })}
                     />
                 ) : null}
